@@ -23,8 +23,6 @@ var thrower = function () { throw messageGetterError; };
 tap.test('failures', function (tt) {
     tt.plan(1);
 
-    var maybeCause = 'cause' in Error.prototype ? '[cause]: undefined, ' : '';
-
     var test = tape.createHarness();
     test.createStream().pipe(concat(function (body) {
         tt.same(stripFullStack(body.toString('utf8')), [
@@ -64,7 +62,7 @@ tap.test('failures', function (tt) {
             '    expected: |-',
             '      [Function: TypeError]',
             '    actual: |-',
-            '      { [RangeError: actual!] ' + maybeCause + "message: 'actual!' }",
+            "      { [RangeError: actual!] message: 'actual!' }",
             '    at: Test.<anonymous> ($TEST/throws.js:$LINE:$COL)',
             '    stack: |-',
             '      RangeError: actual!',
@@ -105,7 +103,7 @@ tap.test('failures', function (tt) {
             '    expected: |-',
             '      \'/Second$/\'',
             '    actual: |-',
-            '      { [Error: First] ' + ('cause' in Error.prototype ? '[cause]: undefined, ' : '') + 'message: \'First\' }',
+            '      { [Error: First] message: \'First\' }',
             '    at: Test.<anonymous> ($TEST/throws.js:$LINE:$COL)',
             '    stack: |-',
             '      Error: First',
