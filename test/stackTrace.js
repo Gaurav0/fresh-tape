@@ -14,7 +14,10 @@ tap.test('preserves stack trace with newlines', function (tt) {
     var parser = stream.pipe(new TapParser());
     var stackTrace = 'foo\n  bar';
 
+    var inspected = 'cause' in Error.prototype ? '{ [Error: Preserve stack] [cause]: undefined }' : '[Error: Preserve stack]';
+
     parser.once('assert', function (data) {
+        delete data.diag.at;
         tt.deepEqual(data, {
             ok: false,
             id: 1,
@@ -22,35 +25,41 @@ tap.test('preserves stack trace with newlines', function (tt) {
             diag: {
                 stack: stackTrace,
                 operator: 'error',
-                at: data.diag.at // we don't care about this one
-            },
-            fullname: ''
+                expected: 'undefined',
+                actual: inspected
+            }
         });
     });
 
     stream.pipe(concat(function (body) {
         var strippedBody = stripAt(body.toString('utf8'));
-        tt.deepEqual(strippedBody.split('\n'), [
-            'TAP version 13',
-            '# multiline stack trace',
-            'not ok 1 Error: Preserve stack',
-            '  ---',
-            '    operator: error',
-            '    stack: |-',
-            '      foo',
-            '        bar',
-            '  ...',
-            '',
-            '1..1',
-            '# tests 1',
-            '# pass  0',
-            '# fail  1',
-            ''
-        ]);
+        tt.equal(
+            strippedBody,
+            'TAP version 13\n'
+            + '# multiline stack trace\n'
+            + 'not ok 1 Error: Preserve stack\n'
+            + '  ---\n'
+            + '    operator: error\n'
+            + '    expected: |-\n'
+            + '      undefined\n'
+            + '    actual: |-\n'
+            + '      ' + inspected + '\n'
+            + '    stack: |-\n'
+            + '      foo\n'
+            + '        bar\n'
+            + '  ...\n'
+            + '\n'
+            + '1..1\n'
+            + '# tests 1\n'
+            + '# pass  0\n'
+            + '# fail  1\n'
+        );
 
         tt.deepEqual(getDiag(strippedBody), {
             stack: stackTrace,
-            operator: 'error'
+            operator: 'error',
+            expected: 'undefined',
+            actual: inspected
         });
     }));
 
