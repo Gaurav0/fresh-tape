@@ -52,7 +52,7 @@
         "string.prototype.trim": "^1.2.5"
     },
     "devDependencies": {
-        "@ljharb/eslint-config": "^20.2.0",
+        "@ljharb/eslint-config": "^20.2.3",
         "@types/node": "^16.4.3",
         "array.prototype.flatmap": "^1.2.5",
         "aud": "^2.0.0",
