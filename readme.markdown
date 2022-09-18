@@ -1,4 +1,4 @@
-# fresh-tape <sup>[![Version Badge][npm-version-svg][package-url]]</sup>
+# fresh-tape <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
 fresh tap-producing test harness for node and browsers
 
