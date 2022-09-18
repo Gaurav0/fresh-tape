@@ -111,7 +111,7 @@ If you want a more colorful / pretty output there are lots of modules on npm tha
 
 - [tap-spec](https://github.com/scottcorgan/tap-spec)
 - [tap-dot](https://github.com/scottcorgan/tap-dot)
-- [faucet](https://github.com/substack/faucet)
+- [faucet](https://github.com/ljharb/faucet)
 - [tap-bail](https://github.com/juliangruber/tap-bail)
 - [tap-browser-color](https://github.com/kirbysayshi/tap-browser-color)
 - [tap-json](https://github.com/gummesson/tap-json)
@@ -301,13 +301,13 @@ Aliases: `t.notLooseEquals()`
 
 ## t.deepEqual(actual, expected, msg)
 
-Assert that `actual` and `expected` have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/substack/node-deep-equal) with strict comparisons (`===`) on leaf nodes and an optional description of the assertion `msg`.
+Assert that `actual` and `expected` have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/inspect-js/node-deep-equal) with strict comparisons (`===`) on leaf nodes and an optional description of the assertion `msg`.
 
 Aliases: `t.deepEquals()`, `t.isEquivalent()`, `t.same()`
 
 ## t.notDeepEqual(actual, expected, msg)
 
-Assert that `actual` and `expected` do not have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/substack/node-deep-equal) with strict comparisons (`===`) on leaf nodes and an optional description of the assertion `msg`.
+Assert that `actual` and `expected` do not have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/inspect-js/node-deep-equal) with strict comparisons (`===`) on leaf nodes and an optional description of the assertion `msg`.
 
 Aliases: `t.notDeepEquals`, `t.notEquivalent()`, `t.notDeeply()`, `t.notSame()`,
 `t.isNotDeepEqual()`, `t.isNotDeeply()`, `t.isNotEquivalent()`,
@@ -315,11 +315,11 @@ Aliases: `t.notDeepEquals`, `t.notEquivalent()`, `t.notDeeply()`, `t.notSame()`,
 
 ## t.deepLooseEqual(actual, expected, msg)
 
-Assert that `actual` and `expected` have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/substack/node-deep-equal) with loose comparisons (`==`) on leaf nodes and an optional description of the assertion `msg`.
+Assert that `actual` and `expected` have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/inspect-js/node-deep-equal) with loose comparisons (`==`) on leaf nodes and an optional description of the assertion `msg`.
 
 ## t.notDeepLooseEqual(actual, expected, msg)
 
-Assert that `actual` and `expected` do not have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/substack/node-deep-equal) with loose comparisons (`==`) on leaf nodes and an optional description of the assertion `msg`.
+Assert that `actual` and `expected` do not have the same structure and nested values using [node's deepEqual() algorithm](https://github.com/inspect-js/node-deep-equal) with loose comparisons (`==`) on leaf nodes and an optional description of the assertion `msg`.
 
 Aliases: `t.notLooseEqual()`, `t.notLooseEquals()`
 
