@@ -15,8 +15,7 @@
         "func-style": "warn",
         "indent": ["error", 4],
         "no-magic-numbers": "off",
-        "max-lines": "warn",
-        "max-lines-per-function": "warn",
+        "max-lines-per-function": "off",
         "max-statements-per-line": [2, { "max": 2 }],
         "max-statements": "warn",
         "multiline-comment-style": "off",
@@ -24,7 +23,7 @@
         "no-underscore-dangle": "warn",
         "no-use-before-define": "warn",
         "object-curly-newline": "off",
-        "sort-keys": "warn",
+        "sort-keys": "off",
     },
     "ignorePatterns": [ "dist/*", "syntax-error.*", "coverage/*", ".nyc_output/*" ],
     "overrides": [
@@ -67,6 +66,7 @@
             "rules": {
                 "eqeqeq": "warn",
                 "func-name-matching": "off",
+                "max-lines": "off",
                 "max-params": "off",
                 "no-continue": "off",
                 "no-invalid-this": "off",
