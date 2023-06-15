@@ -1,6 +1,6 @@
 # fresh-tape <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
-fresh tap-producing test harness for node and browsers
+[TAP](https://testanything.org/)-producing test harness for node and browsers
 
 [`tape`](https://npmjs.com/package/fresh-tape) is commited to keep the current node compatibility,
 which does not permit an update of major dependencies like `through` and `concat-stream`.
