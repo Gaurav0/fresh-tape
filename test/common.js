@@ -98,7 +98,12 @@ module.exports.stripFullStack = function (output) {
         // Handle stack trace variation in Node v0.8
         /(\[\.\.\. stack stripped \.\.\.\]\r?\n *at) <anonymous> \(([^)]+)\)/g,
         '$1 $2'
-    ).split(/\r?\n/g);
+    ).replace(
+        // Handle more stack trace variation in Node v0.8
+        /at(:?) Test\.t /g,
+        'at$1 Test.<anonymous> '
+    )
+        .split(/\r?\n/g);
 };
 
 module.exports.runProgram = function (folderName, fileName, cb) {

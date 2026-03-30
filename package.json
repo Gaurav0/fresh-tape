@@ -66,6 +66,7 @@
         "npm-run-posix-or-windows": "^2.0.2",
         "npmignore": "^0.3.1",
         "safe-publish-latest": "^2.0.0",
+        "semver": "~6.3.1",
         "tap": "^14.11.0",
         "tap-parser": "^10.1.0",
         "typescript": "^4.3.2",
