@@ -42,8 +42,7 @@
         "object.assign": "^4.1.5",
         "path-pony": "^1.0.0",
         "readable-stream": "https://registry.npmjs.org/@leichtgewicht/readable-stream/-/readable-stream-3.6.0.tgz",
-        "resolve": "^2.0.0-next.5",
-        "string.prototype.trim": "^1.2.9"
+        "resolve": "^2.0.0-next.5"
     },
     "devDependencies": {
         "@ljharb/eslint-config": "^21.1.1",
