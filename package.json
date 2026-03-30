@@ -22,6 +22,7 @@
     "bin": {
         "fresh-tape": "bin/fresh-tape"
     },
+    "sideEffects": false,
     "directories": {
         "example": "example",
         "test": "test"
