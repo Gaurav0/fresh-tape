@@ -17,7 +17,11 @@ tap.test('main harness object is exposed', function (assert) {
 
     assert.equal(typeof tape.getHarness, 'function', 'tape.getHarness is a function');
 
+    assert.equal(typeof tape.run, 'function', 'tape.run is a function');
+
     assert.equal(tape.getHarness()._results.pass, 0);
+
+    assert.equal(tape.getHarness().run, undefined, 'tape.getHarness().run is undefined (wait not called)');
 
     assert.end();
 
