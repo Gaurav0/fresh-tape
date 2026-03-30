@@ -169,5 +169,5 @@ tap.test('errors importing test files', function (t) {
 function tape(args, options) {
     var bin = __dirname + '/../bin/fresh-tape';
 
-    return spawn(process.argv[0], [bin].concat(args.split(' ')), assign({ cwd: __dirname }, options));
+    return spawn(process.execPath, [bin].concat(args.split(' ')), assign({ cwd: __dirname }, options));
 }
