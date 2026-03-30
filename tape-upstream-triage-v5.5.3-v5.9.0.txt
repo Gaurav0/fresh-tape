@@ -169,7 +169,7 @@ risk     action       triage  status   sha       subject
 5        reimplement  lib    pending  6a5df50   [Fix] handle native ESM URLs in `at:`
 -        skip         meta   skip     22befd6   v5.7.4
 4        replace      deps   omit     ad0dd2e   [Deps] update `@ljharb/resumer`
-4        replace      deps   pending  5360d20   [Deps] update `@ljharb/through`
+4        replace      deps   omit     5360d20   [Deps] update `@ljharb/through`
 1        cherry-pick  tests  pending  9133c93   [Tests] clean up throws tests
 5        reimplement  lib    pending  1b2681d   [Fix] `throws`: fix crash when throwing primitives with a non-empty expected object
 4        replace      deps   pending  bff9dad   [Deps] update `@ljharb/resumer`
