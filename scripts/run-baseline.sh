@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run lint and test stages independently; never stop early so all failures are visible.
-# Writes logs under test-baseline/. See test-baseline/README.md
+# Writes logs under test-baseline/. See scripts/README-baseline.md
 
 set -u
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -33,6 +33,7 @@ run_stage eslint npx eslint --ext .js,.cjs,.mjs . bin/*
 run_stage tsc npx tsc --noEmit test/typings.ts
 run_stage webpack npx webpack --mode production --bail ./index.js
 run_stage tap-tests npx tap -Rtap --no-check-coverage --no-coverage-report --no-bail --no-color test/*.js
+run_stage tap-compat npx tap -Rtap --no-check-coverage --no-coverage-report --no-bail --no-color test/compat/*.js
 
 node "${ROOT}/scripts/update-baseline-inventory.js"
 
@@ -40,7 +41,7 @@ node "${ROOT}/scripts/update-baseline-inventory.js"
   echo ""
   echo "---"
   echo "Logs in ${OUT}/"
-  echo "  eclint-output.txt, eslint-output.txt, tsc-output.txt, webpack-output.txt, tap-tests-output.txt"
+  echo "  eclint-output.txt, eslint-output.txt, tsc-output.txt, webpack-output.txt, tap-tests-output.txt, tap-compat-output.txt"
   echo "  summary.txt, inventory.md"
 } | tee -a "$SUMMARY"
 

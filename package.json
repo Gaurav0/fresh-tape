@@ -84,7 +84,7 @@
         "eclint:windows": "eclint check *.js",
         "prelint": "npm-run-posix-or-windows eclint",
         "lint": "eslint --ext .js,.cjs,.mjs . bin/* && tsc --noEmit test/typings.ts && webpack --mode production --bail ./index.js",
-        "pretest": "npm run lint",
+        "pretest": "npm run lint && npm run tests-compat",
         "test": "npm-run-posix-or-windows tests-only",
         "posttest": "npx npm@'>=10.2' audit --production",
         "tests-only": "tap -Rtap --no-check-coverage --no-coverage-report test/*.js",

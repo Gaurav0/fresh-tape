@@ -8,6 +8,8 @@ Run from the repo root:
 npm run tests-compat
 ```
 
+Compat also runs in **`npm run pretest`** (before `tests-only`). Full baseline logs including compat are produced by **`npm run test:baseline`** (see `scripts/README-baseline.md`).
+
 The main regression suite is `npm run tests-only` (`test/*.js`). Compat tests intentionally avoid stack-sensitive golden TAP; use them for smoke checks, release gates, or CI jobs that only need “does the published API work?”
 
 ## Files

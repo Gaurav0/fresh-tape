@@ -69,10 +69,10 @@ Phase G **does not** reopen large API or architecture decisions settled in E/F u
 ## Verification checklist
 
 - `npm run tests-only` — exit 0 on target Node(s).
-- `npm run tests-compat` — exit 0 (optional lane).
+- `npm run tests-compat` — exit 0 (also runs in **`pretest`** before `tests-only`).
 - `npm run prelint` / `npm run eclint` — exit 0.
 - `npm run lint` — exit 0 (full chain).
-- `npm test` — exit 0 (includes audit; may need network for `posttest` in some environments).
+- `npm test` — exit 0 (`pretest` = lint + compat, then main tap suite; `posttest` audit may need network).
 
 ## Exit criteria (working definition)
 
