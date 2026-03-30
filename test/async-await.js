@@ -7,7 +7,8 @@ var stripDeprecations = require('./common').stripDeprecations;
 var runProgram = require('./common').runProgram;
 
 var majorVersion = Number(process.versions.node.split('.')[0]);
-var node17 = majorVersion >= 17;
+var node15 = majorVersion >= 15;
+var node17 = node15 && majorVersion >= 17;
 
 var lengthMessage = 'Cannot read property \'length\' of null';
 try {
@@ -205,9 +206,10 @@ tap.test('sync-error', function (t) {
             '',
             'Error: oopsie',
             '    at Test.myTest ($TEST/async-await/sync-error.js:$LINE:$COL)',
-            '    at Test.bound [as _cb] ($TAPE/lib/test.js:$LINE:$COL)',
             '    at Test.run ($TAPE/lib/test.js:$LINE:$COL)',
-            '    at Test.bound [as run] ($TAPE/lib/test.js:$LINE:$COL)',
+            node15 ? [
+                '    at processImmediate (timers:$LINE:$COL)'
+            ] : [],
             node17 ? [
                 '',
                 'Node.js ' + process.version
