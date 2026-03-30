@@ -5,6 +5,250 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+**[Unreleased]** records changes specific to the **fresh-tape** fork. Numbered sections such as **[v5.9.0]** follow [upstream tape](https://github.com/tape-testing/tape) release history.
+
+## [Unreleased] — fresh-tape
+
+### Changed
+
+- **Dependencies**: Remove `object-is`, `object-keys`, `array.prototype.every`, and `string.prototype.trim` in favor of native `Object.is`, `Object.keys`, `Array.prototype.every`, and `String.prototype.trim` (via `call-bind` / `callBound` where behavior must match the former polyfills, e.g. `t.comment()`).
+- **Type definitions**: Expand `index.d.ts` to match the tape 5.9.x API (`Harness`, `wait` / `run` / `getHarness`, the `test` alias, `Test` constructor and static `skip`, `objectPrintDepth`, `teardown` / `capture` / `captureFn` / `intercept`, and `throws` / `doesNotThrow` / `comment` overloads). Extend `test/typings.ts` accordingly.
+
+### Packaging
+
+- Add a checked-in `.npmignore` so the published package omits tests, scripts, CI metadata, and internal planning docs while keeping runtime code, types, readme, license, changelog, and examples. Remove the `prepack` hook that ran `npmignore --auto` (which required an ignored, generated file) and remove the redundant `publishConfig.ignore` list.
+
+---
+
+## [v5.9.0](https://github.com/tape-testing/tape/compare/v5.8.1...v5.9.0) - 2024-09-15
+
+### Commits
+
+- [New] `bin/tape`: add `--strict` [`4c97f54`](https://github.com/tape-testing/tape/commit/4c97f544939d949f18a1f53211f5c35c6902d52b)
+- [Fix] in engines that lack dynamic import, have some output [`2d5c8dc`](https://github.com/tape-testing/tape/commit/2d5c8dcfd9a4d0f96713e229e21bc9363f126dd1)
+- [Tests] use `npm audit` instead of `aud` [`681d4bd`](https://github.com/tape-testing/tape/commit/681d4bd7851cbcba2c93dfa7d24814e083285309)
+- [Dev Deps] update `auto-changelog` [`b7bc72f`](https://github.com/tape-testing/tape/commit/b7bc72f82d0592aae38ed80484c09b04593a1d2c)
+- [Deps] update `mock-property` [`ecfb546`](https://github.com/tape-testing/tape/commit/ecfb546465bc1ab0194fad69e4d3400d8e645ba1)
+- [Deps] update `object-inspect` [`9a47aba`](https://github.com/tape-testing/tape/commit/9a47abae189019797a8cfd504b5194ba4ecdf1a9)
+- [readme] notLooseEqual(s) is not an alias for notDeepLooseEqual [`c827ac9`](https://github.com/tape-testing/tape/commit/c827ac994f147a2b3df1f51a42316bda96cedb65)
+- [readme] remove defunct badges [`7880dd4`](https://github.com/tape-testing/tape/commit/7880dd4d73ea865aa7cabee79a58638895f968d4)
+- [Dev Deps] add missing peer dep [`627d1e7`](https://github.com/tape-testing/tape/commit/627d1e79da5e3f6cc76e2e0240b62e5bc7d7f673)
+
+---
+
+## [v5.8.1](https://github.com/tape-testing/tape/compare/v5.8.0...v5.8.1) - 2024-06-16
+
+### Fixed
+
+- [meta] fix URLs [`#608`](https://github.com/tape-testing/tape/issues/608)
+
+### Commits
+
+- [Fix] `assertion`: pass through assertion return value, for promises [`2ad86d4`](https://github.com/tape-testing/tape/commit/2ad86d45abc9ee3272772cf25a96a557a34c0b1c)
+
+## [v5.8.0](https://github.com/tape-testing/tape/compare/v5.7.5...v5.8.0) - 2024-06-14
+
+### Fixed
+
+- [New] add `t.assertion` [`#555`](https://github.com/tape-testing/tape/issues/555)
+
+### Commits
+
+- [meta] update URLs [`77cabeb`](https://github.com/tape-testing/tape/commit/77cabebcd4b41da0083cb2c3c71105ba165debd6)
+- [New] allow TODO tests to be "ok" with env var `TODO_IS_OK` [`6cd06f5`](https://github.com/tape-testing/tape/commit/6cd06f510d8c001b32553502ec0b3e1876849178)
+- [Tests] strip node’s deprecation warnings [`8d40837`](https://github.com/tape-testing/tape/commit/8d40837002616401d9978bacd90a12dcc9a78c3e)
+- [Tests] increase coverage [`aa7de58`](https://github.com/tape-testing/tape/commit/aa7de58f7d86eb07552ac6847ef575e057774ad1)
+- [Refactor] `Test`: minor tweaks [`ce4ce8a`](https://github.com/tape-testing/tape/commit/ce4ce8a1a5bc6403868f2e50e1dccce1f62e82b6)
+- [meta] simplify `exports` [`d39cb8d`](https://github.com/tape-testing/tape/commit/d39cb8d84f98626592d7c192407a828d1969c6c3)
+- [Deps] update `@ljharb/resumer`, `@ljharb/through`, `hasown` [`77952d0`](https://github.com/tape-testing/tape/commit/77952d0c01bbcd15b3d954bff2b4d2a2915847ba)
+- [Tests] handle more stack trace variation in Node v0.8 [`d2f0778`](https://github.com/tape-testing/tape/commit/d2f0778c8e4612f7b92a1364843eb838a8b80436)
+- [Deps] update `array.prototype.every`, `string.prototype.trim` [`732268b`](https://github.com/tape-testing/tape/commit/732268b73376100806480662777bc396980f3ca9)
+- [Dev Deps] update `@ljharb/eslint-config` [`7b39e14`](https://github.com/tape-testing/tape/commit/7b39e144a362d44fd332ac15be50979439a17a6d)
+- [Refactor] `test`: reduce binding by using polyfill entrypoints [`91a83b6`](https://github.com/tape-testing/tape/commit/91a83b684abce30f1d68797ae675c8595eff5068)
+- [Dev Deps] remove unused `intl-fallback-symbol`, `is-core-module` [`eafacf6`](https://github.com/tape-testing/tape/commit/eafacf6aa0baf205fe461309c5425024c90cb6fb)
+- [Deps] update `object-is` [`1b01656`](https://github.com/tape-testing/tape/commit/1b016567b85c604801828a87e668b5b7d25a71e8)
+- [meta] simplify `exports` [`f9eac5b`](https://github.com/tape-testing/tape/commit/f9eac5b45979ed1228447122de4460f33aab1fde)
+
+## [v5.7.5](https://github.com/tape-testing/tape/compare/v5.7.4...v5.7.5) - 2024-02-14
+
+### Commits
+
+- [Fix] `throws`: fix crash when throwing primitives with a non-empty expected object [`1b2681d`](https://github.com/tape-testing/tape/commit/1b2681dd56713c953d4928af15dfd7b38bb526e2)
+- [Tests] clean up throws tests [`9133c93`](https://github.com/tape-testing/tape/commit/9133c93929703814b2031d4ce2e3b350636705ab)
+- [Fix] `default_stream`: do not error on nullish data [`eff3725`](https://github.com/tape-testing/tape/commit/eff3725041361be8f7ae97cc95c7708e4b126b05)
+- [Fix] in IE 8, `TypeError` does not inherit from `Error` [`93c1d12`](https://github.com/tape-testing/tape/commit/93c1d12380e230adff29a86a030dd9c1fa544afc)
+- [actions] remove redundant finisher [`410e9e4`](https://github.com/tape-testing/tape/commit/410e9e4394b98e950c5e59572dea17fb51a8b4b6)
+- [Deps] update `call-bind`, `hasown` [`82e7d71`](https://github.com/tape-testing/tape/commit/82e7d71a87e00c0a24679e1e37f464102e348ca6)
+- [Deps] update `@ljharb/resumer` [`af2fe68`](https://github.com/tape-testing/tape/commit/af2fe68ce56d96de699a45aa4a1623d7719219b8)
+- [Deps] update `@ljharb/resumer` [`bff9dad`](https://github.com/tape-testing/tape/commit/bff9dad3e5b363b6356cdea75e7615900ebc1017)
+- [Deps] update `@ljharb/through` [`5360d20`](https://github.com/tape-testing/tape/commit/5360d200dada42a57c2f0dbdd186d7e51e81b707)
+- [Deps] update `@ljharb/resumer` [`ad0dd2e`](https://github.com/tape-testing/tape/commit/ad0dd2e2096179130b78ed7c308acb1eb0469343)
+
+## [v5.7.4](https://github.com/tape-testing/tape/compare/v5.7.3...v5.7.4) - 2024-01-24
+
+### Fixed
+
+- [Fix] handle native ESM URLs in `at:` [`#601`](https://github.com/tape-testing/tape/issues/601)
+
+### Commits
+
+- [Deps] update `has-dynamic-import` [`1e50cb3`](https://github.com/tape-testing/tape/commit/1e50cb35fce5734f069218bd6ce8b550445b1a88)
+
+## [v5.7.3](https://github.com/tape-testing/tape/compare/v5.7.2...v5.7.3) - 2024-01-12
+
+### Commits
+
+- [Refactor] `Test`: cleaner `at` logic [`af4d109`](https://github.com/tape-testing/tape/commit/af4d1095f6fd9118cdf3b7ff55ea67c55d22e102)
+- [Fix] `intercept`: give a proper error message with a readonly Symbol property [`4640a91`](https://github.com/tape-testing/tape/commit/4640a91b4d67cb01512988e2662e74654a9a8b85)
+- [Refactor] `getHarness`: avoid mutating `opts`, account for only one internal callsite for `createExitHarness` [`19cfc8f`](https://github.com/tape-testing/tape/commit/19cfc8fa4d91763d678de05306ccfcce6425ff51)
+- [Tests] Spawn processes during tests using execPath so that the tests pass on windows [`4a57fbe`](https://github.com/tape-testing/tape/commit/4a57fbe14db3eb342543c391f8c42fb83b4e8359)
+- [Fix] `createHarness`: when no `conf` is provided, `only` should not throw [`8a1cccc`](https://github.com/tape-testing/tape/commit/8a1ccccb349a1bfc5b512a5cfba88950daecc1c6)
+- [Fix] `bin/tape`: ignore options on windows [`a2b74f9`](https://github.com/tape-testing/tape/commit/a2b74f97fe6ea14898b636f560291647bb747753)
+- [Refactor] `_assert`: avoid reassigning arguments [`dc64c08`](https://github.com/tape-testing/tape/commit/dc64c08a48c9816e46634719923f8d90b06eb911)
+- [Refactor] `Results`: use `this` instead of `self` [`5f831b4`](https://github.com/tape-testing/tape/commit/5f831b41a1cf6a8b59c648fc1554f5613cbfd0f4)
+- [Performance] avoid the extra call frame to `new` it [`78fd0d6`](https://github.com/tape-testing/tape/commit/78fd0d61809bc922e7ac85d65902cc1de1124936)
+- [Dev Deps] update `aud`, `npmignore` [`ceabd99`](https://github.com/tape-testing/tape/commit/ceabd996f0aa8b39702591a0beaab0d58f2cd3cc)
+- [Tests] fix `npm test` on windows [`bcf6ce7`](https://github.com/tape-testing/tape/commit/bcf6ce793996acd4092bd60c1f99686a73ff048e)
+- [Fix] stack trace path parsing on windows [`9cbae8a`](https://github.com/tape-testing/tape/commit/9cbae8a7e22567d30019e0cbc03c8597f03b4230)
+- [Refactor] `Results` `createStream`: clean up `_push` handler [`878a500`](https://github.com/tape-testing/tape/commit/878a5008e1856bdea6543c7303bc84311907b066)
+- [Refactor] `Test`: a more precise check [`f6d30cf`](https://github.com/tape-testing/tape/commit/f6d30cfaa70e477a6531d23f4ea19501e0f62614)
+- [Deps] update `object.assign` [`201e650`](https://github.com/tape-testing/tape/commit/201e65028a3283de5bda46077c71a024178c300a)
+- [Tests] ensure the import tests spawn properly [`d1987c0`](https://github.com/tape-testing/tape/commit/d1987c04375b952dcac1e6639a702ac4d23f7a57)
+- [actions] skip `engines` check since bin/tape and the rest of the lib conflict [`19af506`](https://github.com/tape-testing/tape/commit/19af5061ab36f646e46e0d4c16a4997e4eef8e86)
+- [Deps] update `deep-equal` [`5d26485`](https://github.com/tape-testing/tape/commit/5d264858b4a2e0f794fb75be913d2b6fc75a31dc)
+- [Deps] update `mock-property` [`d90c29a`](https://github.com/tape-testing/tape/commit/d90c29a595575e10ca5b5284e858af922c5c9465)
+- [meta] add `sideEffects` flag [`85f593b`](https://github.com/tape-testing/tape/commit/85f593b77acc63e07024424c6c6baeba9708aba0)
+
+## [v5.7.2](https://github.com/tape-testing/tape/compare/v5.7.1...v5.7.2) - 2023-10-20
+
+### Commits
+
+- [Refactor] use `hasown` instead of `has` [`489736a`](https://github.com/tape-testing/tape/commit/489736ab9325a3a3ff3c4c391d4de6a44e86e36a)
+- [Deps] update `call-bind`, `mock-property`, `object-inspect` [`de34703`](https://github.com/tape-testing/tape/commit/de3470385f388e601b3058bd2240db1c7bb941d1)
+- [Tests] use `through` properly [`56d7a8b`](https://github.com/tape-testing/tape/commit/56d7a8b02572d1ce711cda8b591ab64f3d636531)
+
+## [v5.7.1](https://github.com/tape-testing/tape/compare/v5.7.0...v5.7.1) - 2023-10-11
+
+### Commits
+
+- [Fix] `default_stream`: add handling for IE &lt; 9 [`13f23ed`](https://github.com/tape-testing/tape/commit/13f23edc2a63aa7c57997bb81886d74e9fce43df)
+- [Deps] update `@ljharb/through`, `resolve` [`9135b40`](https://github.com/tape-testing/tape/commit/9135b40f93adc6b8fbc31f48a96adf2339b00672)
+- Merge tag 'v4.17.0' [`e61cd40`](https://github.com/tape-testing/tape/commit/e61cd4095062f4b9afdfb11945a502390eaed30d)
+- [New] add `t.intercept()` [`e60aeca`](https://github.com/tape-testing/tape/commit/e60aeca688fe1d3a363f74f31c83d816035aca4c)
+- [New] add `t.capture` and `t.captureFn`, modeled after tap [`3d96d69`](https://github.com/tape-testing/tape/commit/3d96d6945ea1cda7780fb3fc6bc04c275ace594a)
+- [Deps] switch from `through` and `resumer` to `@ljharb/through` and `@ljharb/resumer` [`a8a7d67`](https://github.com/tape-testing/tape/commit/a8a7d67c9ffe1daa46407f35685a1ef8d53df66a)
+- [Tests] simplify tests [`83bc381`](https://github.com/tape-testing/tape/commit/83bc3810a930c60973e60a7a02b677c2fb1f444c)
+- [Performance] use inline `typeof` [`c45db4e`](https://github.com/tape-testing/tape/commit/c45db4e0978999cece915e7f1a223aa9eb445ae0)
+- [Deps] update `minimist`, `resolve`, `string.prototype.trim` [`feee094`](https://github.com/tape-testing/tape/commit/feee0949f1f23ef4f13c9847c20284f7864cd67e)
+- [Dev Deps] update `@ljharb/eslint-config`, `array.prototype.flatmap`, `aud` [`7123111`](https://github.com/tape-testing/tape/commit/71231114c92b4a093b468875c4d8f741ab1a49d4)
+- Revert "[meta] ensure `not-in-publish`‘s absence does not fail anything" [`92aaa51`](https://github.com/tape-testing/tape/commit/92aaa5106b65824d82ce72c0d1dfcc6df6cff753)
+- [Dev Deps] pin `jackspeak` since 2.1.2+ depends on npm aliases, which kill the install process in npm &lt; 6 [`a576f8d`](https://github.com/tape-testing/tape/commit/a576f8d8b24e84324b7ee0498c37759423c7ca87)
+
+## [v5.7.0](https://github.com/tape-testing/tape/compare/v5.6.6...v5.7.0) - 2023-09-21
+
+### Commits
+
+- [New] add `t.intercept()` [`5d37060`](https://github.com/tape-testing/tape/commit/5d37060b844ea455c80eb305050168a632998603)
+- [New] add `t.capture` and `t.captureFn`, modeled after tap [`9e21f7a`](https://github.com/tape-testing/tape/commit/9e21f7a3106fcc4d4e7c057633ce4516d53978d2)
+- [Refactor] prefer second `.then` arg over `.catch` [`135a952`](https://github.com/tape-testing/tape/commit/135a952e55372855b1510a6381e5a5757758b452)
+- [Performance] use inline `typeof` [`5ba89c9`](https://github.com/tape-testing/tape/commit/5ba89c993ea0a4c9a880d86af5c268deb239aa70)
+- [Deps] update `array.prototype.every`, `glob`, `string.prototype.trim` [`4e2db4d`](https://github.com/tape-testing/tape/commit/4e2db4d0699be4034a577479b902885fcc0f2a6c)
+- [Dev Deps] update `array.prototype.flatmap` [`df46769`](https://github.com/tape-testing/tape/commit/df467693328f7771b2db639ff4aaaf2c64ad16d6)
+- Revert "[meta] ensure `not-in-publish`‘s absence does not fail anything" [`1b3e0b1`](https://github.com/tape-testing/tape/commit/1b3e0b10dc934a529297f11fa6ccd1693e5416b3)
+
+## [v5.6.6](https://github.com/tape-testing/tape/compare/v5.6.5...v5.6.6) - 2023-07-18
+
+### Commits
+
+- [Deps] switch from `through` and `resumer` to `@ljharb/through` and `@ljharb/resumer` [`c99680a`](https://github.com/tape-testing/tape/commit/c99680a661867f0db81d830cb4214e526a4cdec4)
+
+## [v5.6.5](https://github.com/tape-testing/tape/compare/v5.6.4...v5.6.5) - 2023-07-12
+
+### Commits
+
+- [Fix] Results: show a skip string on tests, not just on assertions [`9bbbcfe`](https://github.com/tape-testing/tape/commit/9bbbcfe6a28a969dcde53850ebb7673837bdfcb7)
+- [Deps] update `deep-equal` [`109a791`](https://github.com/tape-testing/tape/commit/109a791cc28b931de1545ba7cb8e5599634190d7)
+
+## [v5.6.4](https://github.com/tape-testing/tape/compare/v5.6.3...v5.6.4) - 2023-07-01
+
+### Commits
+
+- [Fix] `throws`: avoid crashing on a nonconfigurable or nonextensible `expected` [`0731b5f`](https://github.com/tape-testing/tape/commit/0731b5f64311b168ac941ce3e547bb1a32766783)
+- [Tests] simplify tests [`c656ee5`](https://github.com/tape-testing/tape/commit/c656ee52626e0e4992e893e41e1ae81ecb5d68a2)
+- [Refactor] `Test`: skip binding for a non-function value [`e244e64`](https://github.com/tape-testing/tape/commit/e244e64eab7529c4e0d2391b989152b84229939e)
+- [Performance] use `call-bind` for autobinding [`70de437`](https://github.com/tape-testing/tape/commit/70de43727d191c10d8ba9542bd0cdabaf272360a)
+- [actions] update rebase action [`834453c`](https://github.com/tape-testing/tape/commit/834453cdd4cb95b71d2180a3b28a1ce8e51357b3)
+- [Deps] update `defined`, `minimist`, `object-inspect`, `string.prototype.trim` [`01edce8`](https://github.com/tape-testing/tape/commit/01edce8073efe1134c5fff58638b350afb7c6d22)
+- [Dev Deps] update `@ljharb/eslint-config`, `array.prototype.flatmap`, `aud` [`1b3ad24`](https://github.com/tape-testing/tape/commit/1b3ad2429b553f7e029fe9fd5977b07e76740e42)
+- [Dev Deps] update `@ljharb/eslint-config`, `aud` [`a6a5eee`](https://github.com/tape-testing/tape/commit/a6a5eee0991a55f001d6468930e20e486a5e308e)
+- [Deps] update `deep-equal` [`2043b2e`](https://github.com/tape-testing/tape/commit/2043b2e72be80f477293eefb44f226bb06aeafc0)
+- [readme] Link to explain what TAP is [`26a75bb`](https://github.com/tape-testing/tape/commit/26a75bbb8b1854fa730eaaf1407aea1409640fd5)
+- [Deps] update `minimist` [`7e7c3d0`](https://github.com/tape-testing/tape/commit/7e7c3d054449ac44f18d90db790705db4bcef37c)
+- [readme] improve t.throws description for Function [`c1b619d`](https://github.com/tape-testing/tape/commit/c1b619db02f5b51e4c1379debeb0bac90daa3b93)
+- [Dev Deps] pin `jackspeak` since 2.1.2+ depends on npm aliases, which kill the install process in npm &lt; 6 [`0e80800`](https://github.com/tape-testing/tape/commit/0e80800b4d287e6cae7bd4f46b13fa8ac5aa1197)
+- Merge tag 'v4.16.2' [`d5d675d`](https://github.com/tape-testing/tape/commit/d5d675dbd841f411960dbe60946744fae4cd2bcb)
+- [meta] add missing npmrc config [`15e2175`](https://github.com/tape-testing/tape/commit/15e2175b927010657c66f0a30e44f5266147311f)
+
+## [v5.6.3](https://github.com/tape-testing/tape/compare/v5.6.2...v5.6.3) - 2023-01-15
+
+## [v5.6.2](https://github.com/tape-testing/tape/compare/v5.6.1...v5.6.2) - 2023-01-15
+
+### Fixed
+
+- [New] `bin/tape`: add `--ignore-pattern` flag [`#586`](https://github.com/tape-testing/tape/issues/586)
+
+### Commits
+
+- [eslint] fix indentation [`b035590`](https://github.com/tape-testing/tape/commit/b035590f782c211e93a6a44ed8d0e9d38636a286)
+- [meta] add `auto-changelog` [`b467b85`](https://github.com/tape-testing/tape/commit/b467b850f169bf294851c68a5c4074360d53a31b)
+- [eslint] enforce `no-use-before-define` [`87deb68`](https://github.com/tape-testing/tape/commit/87deb68b111fd0d94efc92c25454a6a3fcedff66)
+- [eclint] fix editorconfig [`ce81cbe`](https://github.com/tape-testing/tape/commit/ce81cbee9bfc00ebd0abbc70932e3eeab84b159e)
+- [eslint] clean up config a bit [`3171edd`](https://github.com/tape-testing/tape/commit/3171eddd25dafb3e9a9606ac70ed6c21bb736e8e)
+- [Tests] `stackTrace`: use the common `getDiag` utility [`65df5a4`](https://github.com/tape-testing/tape/commit/65df5a4f194cf01c3872c713d129ac968342181c)
+- [Fix] `throws`: avoid crashing on a nonconfigurable or nonextensible `expected` [`0cd7a2c`](https://github.com/tape-testing/tape/commit/0cd7a2cb2e231bd87412170f05020fd910e6d3e4)
+- [meta] fix repo URLs [`85d86a4`](https://github.com/tape-testing/tape/commit/85d86a468af1b74af432d41c204efd4440b5f56f)
+- Revert "[Tests] handle a broken error `cause` in node 16.9/16.10" [`775ba37`](https://github.com/tape-testing/tape/commit/775ba3789e16b1464dc810243dc5866b2868fc1d)
+- [meta] use `npmignore` to autogenerate an npmignore file [`1645abb`](https://github.com/tape-testing/tape/commit/1645abbf47df2a8142514302da2730c54b993b47)
+- [eslint] enable `func-style` [`75c0c3a`](https://github.com/tape-testing/tape/commit/75c0c3a4f9452c36b5318ba6c09ab4ebc97f15d0)
+- [actions] update rebase action [`b3d724e`](https://github.com/tape-testing/tape/commit/b3d724e9ddfcca3c3d78f3c9d53158b5aef2208b)
+- [Deps] update `array.prototype.every`, `deep-equal`, `string.prototype.trim` [`e9c9aba`](https://github.com/tape-testing/tape/commit/e9c9abab037b274bb9b239b26c33d94eb8b7e802)
+- [Deps] update `defined`, `minimist`, `resolve` [`83695c0`](https://github.com/tape-testing/tape/commit/83695c03495801e6cf98cba7328d287e47f3afde)
+- [Deps] update `deep-equal`, `object-inspect` [`09906f3`](https://github.com/tape-testing/tape/commit/09906f323c69b5f189675bf0faad9d5be4831706)
+- [Dev Deps] update `@ljharb/eslint-config`, `aud` [`afd8f64`](https://github.com/tape-testing/tape/commit/afd8f64712daade8ccd29b727d90bccab9f5ce12)
+- [Dev Deps] update `array.prototype.flatmap` [`8b8bf07`](https://github.com/tape-testing/tape/commit/8b8bf07312adb248238238a0d810b0eedeb8b2b5)
+- [Dev Deps] update `aud` [`f0fe7c0`](https://github.com/tape-testing/tape/commit/f0fe7c0979ba5d7ea96c619fab5389979cd0a862)
+- [Dev Deps] update `tap-parser` [`2f61eac`](https://github.com/tape-testing/tape/commit/2f61eac3800d63fba65895bbfa947b8b82346cf0)
+- Merge tag 'v4.16.1' [`96ff863`](https://github.com/tape-testing/tape/commit/96ff863913b282e13bc5200179fcb1a757933449)
+- [readme] fix version badge [`20ea48d`](https://github.com/tape-testing/tape/commit/20ea48d53b6492bf648d02d53c41b324abbfb6e1)
+
+## [v5.6.1](https://github.com/tape-testing/tape/compare/v5.6.0...v5.6.1) - 2022-09-19
+
+### Commits
+
+- [eslint] fix indentation [`2151e06`](https://github.com/tape-testing/tape/commit/2151e06877e65802ef7364bc6bebc21fc45e3699)
+- [meta] add `auto-changelog` [`86cbbd1`](https://github.com/tape-testing/tape/commit/86cbbd1bb6bdc57fc718c6043866ab6bed46899c)
+- [eslint] enforce `no-use-before-define` [`f8a8a7f`](https://github.com/tape-testing/tape/commit/f8a8a7f35402ebf9865cafd3682e9a6b0188436e)
+- [meta] fix repo URLs [`a9ae3c2`](https://github.com/tape-testing/tape/commit/a9ae3c22db37d760fc30aea5053302177e7c3d3e)
+- [Tests] `stackTrace`: use the common `getDiag` utility [`298cb80`](https://github.com/tape-testing/tape/commit/298cb806ef4a438792cb533675b6faa4b02a1d92)
+- [eslint] enable `func-style` [`98b9623`](https://github.com/tape-testing/tape/commit/98b9623fc16f5ebe1be8beba4c21d9494bce05ac)
+- [New] `bin/tape`: include the exact arg when there are no glob results; use require on `--require` files [`6a1ce43`](https://github.com/tape-testing/tape/commit/6a1ce4389e8b601249c3c81b31cd60eea3e0f74a)
+- [eslint] clean up config a bit [`67ad201`](https://github.com/tape-testing/tape/commit/67ad20117457313ab2c9d63365573858efb51566)
+- [meta] create FUNDING.yml [`5b4752f`](https://github.com/tape-testing/tape/commit/5b4752fe006597002918cbd3ee8a4e50f48677ca)
+- [Refactor] `bin/tape`: make it a bit more functional, for easier v5 backporting [`fbdbfc9`](https://github.com/tape-testing/tape/commit/fbdbfc90dd7afeba89cc3dd5e6280ed247f8b789)
+- [Deps] update `glob`, `object-inspect`, `resolve`, `string.prototype.trim` [`6a3c200`](https://github.com/tape-testing/tape/commit/6a3c2009e7f6052bd4423dce80bb140e234a877f)
+- [Dev Deps] update `@ljharb/eslint-config`, `array.prototype.flatmap`, `es-value-fixtures`, `falafel` [`934d49b`](https://github.com/tape-testing/tape/commit/934d49b1e840d3c57bd6e52a74017e06c6a55934)
+- [Tests] fix no_only tests on Windows [`f35f71b`](https://github.com/tape-testing/tape/commit/f35f71bd44e76eb53bedd63615e59fdc382e4d0d)
+- Revert "[Tests] handle a broken error `cause` in node 16.9/16.10" [`23fac16`](https://github.com/tape-testing/tape/commit/23fac16760344fe6843722b626dcba9e2e1c8372)
+- [Robustness] `test` observably looks up `exec` on the object [`4575ca4`](https://github.com/tape-testing/tape/commit/4575ca4b185cb503c93e29113b99e10f1ae4b63c)
+- [meta] add SECURITY.md [`7b0c901`](https://github.com/tape-testing/tape/commit/7b0c901b459b19668fcf6cc5b4b08f42978135b4)
+- [meta] add missing npmrc config [`5d11d84`](https://github.com/tape-testing/tape/commit/5d11d844c87d64b6bac6fbe70357ad587ba0281a)
+- [Deps] update `object.assign` [`3327fdd`](https://github.com/tape-testing/tape/commit/3327fdd249e3a0abf21311d2ca229d6f59fa2b26)
+- [readme] fix version badge [`74e6c9e`](https://github.com/tape-testing/tape/commit/74e6c9e02daa286c86f7d5f4d4e019e62b8322a2)
+- Merge tag 'v4.16.0' [`4a44a7e`](https://github.com/tape-testing/tape/commit/4a44a7ee31dd24dff833909366449a3da6116a78)
+
+
+---
+
 ## [v5.6.0](https://github.com/ljharb/tape/compare/v5.5.3...v5.6.0) - 2022-08-16
 
 ### Commits
