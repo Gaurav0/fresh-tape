@@ -204,7 +204,7 @@ Phase F (planned, sync/phase-f): track risk-6 "reimplement API" rows; full plan 
 | - | skip | meta | skip | `70d8f91` | v5.7.5 |
 | 1 | cherry-pick | meta | done | `77cabeb` | [meta] update URLs |
 | 1 | cherry-pick | meta | done | `d39cb8d` | [meta] simplify `exports` |
-| 6 | reimplement | API | pending | `6cd06f5` | [New] allow TODO tests to be "ok" with env var `TODO_IS_OK` |
+| 6 | reimplement | API | done | `6cd06f5` | [New] allow TODO tests to be "ok" with env var `TODO_IS_OK` |
 | 5 | reimplement | lib | done | `ce4ce8a` | [Refactor] `Test`: minor tweaks |
 | 1 | cherry-pick | meta | pending | `f9eac5b` | [meta] simplify `exports` |
 | 2 | cherry-pick | deps | done | `1b01656` | [Deps] update `object-is` |

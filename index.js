@@ -137,7 +137,9 @@ module.exports.test = module.exports; // tap compat
 module.exports.test.skip = Test.skip;
 
 function createHarness(conf_) {
-    var results = new Results();
+    var envTodoIsOK = typeof process !== 'undefined' && process.env
+        && process.env.TODO_IS_OK === '1';
+    var results = new Results({ todoIsOK: !!envTodoIsOK });
     if (!conf_ || conf_.autoclose !== false) {
         results.once('done', function () { results.close(); });
     }

@@ -237,6 +237,8 @@ Available `opts` options are:
 - opts.objectPrintDepth = 5. Configure max depth of expected / actual object printing. Environmental variable `NODE_TAPE_OBJECT_PRINT_DEPTH` can set the desired default depth for all tests; locally-set values will take precedence.
 - opts.todo = true/false. Test will be allowed to fail.
 
+If the environment variable `TODO_IS_OK` is set to `1`, failed assertions in **todo** tests are still emitted as `ok` in TAP (with `# TODO` and a diagnostic block), and counts toward the pass total. This matches [tape](https://github.com/ljharb/tape)’s behavior when migrating CI that treats todo failures as non-fatal.
+
 If you forget to `t.plan()` out how many assertions you are going to run and you don't call `t.end()` explicitly, or return a Promise that eventually settles, your test will hang.
 
 If `cb` returns a Promise, it will be implicitly awaited. If that promise rejects, the test will be failed; if it fulfills, the test will end. Explicitly calling `t.end()` while also returning a Promise that fulfills is an error.
