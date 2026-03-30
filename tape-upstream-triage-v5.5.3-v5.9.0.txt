@@ -172,7 +172,7 @@ risk     action       triage  status   sha       subject
 4        replace      deps   omit     5360d20   [Deps] update `@ljharb/through`
 1        cherry-pick  tests  pending  9133c93   [Tests] clean up throws tests
 5        reimplement  lib    pending  1b2681d   [Fix] `throws`: fix crash when throwing primitives with a non-empty expected object
-4        replace      deps   pending  bff9dad   [Deps] update `@ljharb/resumer`
+4        replace      deps   omit     bff9dad   [Deps] update `@ljharb/resumer`
 5        reimplement  lib    pending  eff3725   [Fix] `default_stream`: do not error on nullish data
 4        replace      deps   pending  af2fe68   [Deps] update `@ljharb/resumer`
 2        cherry-pick  deps   done     82e7d71   [Deps] update `call-bind`, `hasown`
