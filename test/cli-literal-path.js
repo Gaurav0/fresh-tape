@@ -16,6 +16,6 @@ tap.test('runs a single literal test file path (no glob metacharacters)', functi
 
     execFile(process.execPath, [tapeBin, 'compat/smoke.js'], { cwd: __dirname }, function (err, stdout) {
         tt.equal(err, null);
-        tt.match(stdout.toString('utf8'), /compat: fresh-tape exports a callable test harness/);
+        tt.match(stdout.toString('utf8'), /compat: smoke — loads and exports harness/);
     });
 });
