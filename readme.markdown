@@ -77,6 +77,12 @@ $ fresh-tape 'tests/**/*.js'
 $ fresh-tape "tests/**/*.js"
 ```
 
+If you want `fresh-tape` to exit with a nonzero status when no test files are found, pass `--strict` (see [`--strict`](#--strict) below):
+
+```sh
+$ fresh-tape --strict 'tests/**/*.js'
+```
+
 ## Preloading modules
 
 Additionally, it is possible to make `fresh-tape` load one or more modules before running any tests, by using the `-r` or `--require` flag. Here's an example that loads [babel-register](https://babeljs.io/docs/usage/require/) before running any tests, to allow for JIT compilation:
@@ -96,6 +102,12 @@ $ fresh-tape -r ./my/local/module tests/**/*.js
 ```
 
 Please note that all modules loaded using the `-r` flag will run *before* any tests, regardless of when they are specified. For example, `fresh-tape -r a b -r c` will actually load `a` and `c` *before* loading `b`, since they are flagged as required modules.
+
+## CLI: ESM and dynamic `import` (fork minimal)
+
+Upstream `tape` uses the `has-dynamic-import` package to detect whether `import()` is available and, when not, loads every test file with synchronous `require()` only. **fresh-tape does not do that** (Option B: minimal fork): the `fresh-tape` binary always loads test files through `import-or-require`, which uses dynamic `import()` for ESM (`.mjs` and `package.json` `"type":"module"` `.js`). There is **no** runtime probe and **no** fallback path for runtimes that lack `import()`.
+
+Use a Node version that supports dynamic `import()` from CommonJS (see `engines` in `package.json`; **Node ≥ 10.17**). Older Node releases cannot run this CLI entry for ESM tests; stick to CommonJS test files if you must target them, and prefer a newer Node for full parity with upstream `tape`’s CLI behavior on mixed ESM/CJS suites.
 
 # things that go well with tape
 
@@ -165,13 +177,34 @@ This is used to load modules before running tests and is explained extensively i
 
 **Alias**: `-i`
 
-This flag is used when tests from certain folders and/or files are not intended to be run. It defaults to `.gitignore` file when passed with no argument.
+This flag is used when tests from certain folders and/or files are not intended to be run.
+The argument is a path to a file that contains the patterns to be ignored.
+It defaults to `.gitignore` when passed with no argument.
 
 ```sh
-tape -i .ignore **/*.js
+fresh-tape -i .ignore '**/*.js'
 ```
 
 An error is thrown if the specified file passed as argument does not exist.
+
+## --ignore-pattern
+
+Same functionality as `--ignore`, but passing the pattern directly instead of an ignore file.
+If both `--ignore` and `--ignore-pattern` are given, the `--ignore-pattern` argument is appended to the content of the ignore file.
+
+```sh
+fresh-tape --ignore-pattern 'integration_tests/**/*.js' '**/*.js'
+```
+
+## --strict
+
+When `--strict` is set and **no** test files are matched after globbing and ignore rules, the process exits with code **127** and prints `No test files found!` on stderr. Without `--strict`, zero files yields an empty successful TAP run (`1..0`, exit 0).
+
+Use `--no-strict` to turn strict mode off explicitly if needed.
+
+```sh
+fresh-tape --strict 'tests/**/*.js'
+```
 
 ## --no-only
 This is particularly useful in a CI environment where an [only test](#testonlyname-opts-cb) is not supposed to go unnoticed.
@@ -179,7 +212,7 @@ This is particularly useful in a CI environment where an [only test](#testonlyna
 By passing the `--no-only` flag, any existing [only test](#testonlyname-opts-cb) causes tests to fail.
 
 ```sh
-tape --no-only **/*.js
+fresh-tape --no-only '**/*.js'
 ```
 
 Alternatively, the environment variable `NODE_TAPE_NO_ONLY_TEST` can be set to `true` to achieve the same behavior; the command-line flag takes precedence.

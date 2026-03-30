@@ -1,11 +1,11 @@
 # tape upstream triage: v5.5.3 .. v5.9.0 (tape-testing/tape)
 # Regenerate: python3 scripts/triage-tape-commits.py /path/to/tape
-# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); re-check after merges.
+# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import).
 #
 # Project goals (fresh-tape fork):
 #   • "Done" for the 5.9.0 release line: ship a small compatibility suite (test/compat/) plus main tests green.
 #   • Stay on readable-stream + current architecture (not @ljharb/through); use action=replace rows accordingly.
-#   • Node: engines >=10 (install on any current/future Node). CI: required tests on 10–24; 25+ runs as non-blocking.
+#   • Node: engines >=10.17 (CLI uses dynamic import via import-or-require; no has-dynamic-import probe). CI: required tests on 10.17–24; 25+ runs as non-blocking.
 #   • Releases: publish 5.9.0 next; subsequent releases track upstream tape version tags.
 #
 # Columns: risk | action | triage | status | sha | subject
@@ -64,11 +64,11 @@ risk     action       triage  status   sha       subject
 -        skip         lib    skip     83d4da8   [Fix] in node v0.4, `stream.pipe` returns `undefined`
 1        cherry-pick  meta   done     6b8e118   [Dev Deps] update `es-value-fixtures`
 2        cherry-pick  deps   done     f6f39a2   [Deps] update `glob`, `object-inspect`, `object.assign`
-3        cherry-pick  CLI    pending  e23ec12   [New] `bin/tape`: include the exact arg when there are no glob results; use require.resolve on `--require` files
+3        cherry-pick  CLI    done     e23ec12   [New] `bin/tape`: include the exact arg when there are no glob results; use require.resolve on `--require` files
 1        cherry-pick  meta   done     934d49b   [Dev Deps] update `@ljharb/eslint-config`, `array.prototype.flatmap`, `es-value-fixtures`, `falafel`
 2        cherry-pick  deps   done     6a3c200   [Deps] update `glob`, `object-inspect`, `resolve`, `string.prototype.trim`
-3        cherry-pick  CLI    pending  fbdbfc9   [Refactor] `bin/tape`: make it a bit more functional, for easier v5 backporting
-3        cherry-pick  CLI    pending  6a1ce43   [New] `bin/tape`: include the exact arg when there are no glob results; use require on `--require` files
+3        cherry-pick  CLI    done     fbdbfc9   [Refactor] `bin/tape`: make it a bit more functional, for easier v5 backporting
+3        cherry-pick  CLI    done     6a1ce43   [New] `bin/tape`: include the exact arg when there are no glob results; use require on `--require` files
 -        skip         meta   skip     6d9e782   v5.6.0
 -        skip         meta   skip     f4c7214   v4.16.0
 1        cherry-pick  tests  done     23fac16   Revert "[Tests] handle a broken error `cause` in node 16.9/16.10"
@@ -93,7 +93,7 @@ risk     action       triage  status   sha       subject
 1        cherry-pick  meta   done     b3d724e   [actions] update rebase action
 1        cherry-pick  meta   done     8b8bf07   [Dev Deps] update `array.prototype.flatmap`
 2        cherry-pick  deps   done     e9c9aba   [Deps] update `array.prototype.every`, `deep-equal`, `string.prototype.trim`
-3        cherry-pick  CLI    pending  8c9fe8e   [New] `bin/tape`: add `--ignore-pattern` flag
+3        cherry-pick  CLI    done     8c9fe8e   [New] `bin/tape`: add `--ignore-pattern` flag
 1        cherry-pick  meta   done     afd8f64   [Dev Deps] update `@ljharb/eslint-config`, `aud`
 2        cherry-pick  deps   done     09906f3   [Deps] update `deep-equal`, `object-inspect`
 5        reimplement  lib    pending  0cd7a2c   [Fix] `throws`: avoid crashing on a nonconfigurable or nonextensible `expected`
@@ -151,7 +151,7 @@ risk     action       triage  status   sha       subject
 5        reimplement  lib    pending  af4d109   [Refactor] `Test`: cleaner `at` logic
 5        reimplement  lib    pending  4640a91   [Fix] `intercept`: give a proper error message with a readonly Symbol property
 5        reimplement  lib    pending  9cbae8a   [Fix] stack trace path parsing on windows
-3        cherry-pick  CLI    pending  a2b74f9   [Fix] `bin/tape`: ignore options on windows
+3        cherry-pick  CLI    done     a2b74f9   [Fix] `bin/tape`: ignore options on windows
 1        cherry-pick  tests  done     4a57fbe   [Tests] Spawn processes during tests using execPath so that the tests pass on windows
 1        cherry-pick  tests  done     bcf6ce7   [Tests] fix `npm test` on windows
 1        cherry-pick  meta   done     ceabd99   [Dev Deps] update `aud`, `npmignore`
@@ -206,7 +206,7 @@ risk     action       triage  status   sha       subject
 1        cherry-pick  meta   done     b7bc72f   [Dev Deps] update `auto-changelog`
 1        cherry-pick  meta   done     627d1e7   [Dev Deps] add missing peer dep
 -        skip         CLI    skip     2d5c8dc   [Fix] in engines that lack dynamic import, have some output
-3        cherry-pick  CLI    pending  4c97f54   [New] `bin/tape`: add `--strict`
+3        cherry-pick  CLI    done     4c97f54   [New] `bin/tape`: add `--strict`
 -        skip         meta   skip     fd9cf6d   v5.9.0
 #
 # --- risk counts ---
