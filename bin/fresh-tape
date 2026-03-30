@@ -65,21 +65,12 @@ var files = opts._.reduce(function (result, arg) {
     return resolvePath(cwd, file);
 });
 
-var hasImport = require('has-dynamic-import');
-
-hasImport().then(function (hasSupport) {
-    // the nextTick callback gets called outside the promise chain, avoiding
-    // promises and unhandled rejections when only loading commonjs files
-    process.nextTick(importFiles, hasSupport);
-});
+// nextTick runs outside any promise chain, avoiding unhandled rejections when only loading CJS files
+process.nextTick(importFiles);
 
 var tape = require('../');
 
-function importFiles(hasSupport) {
-    if (!hasSupport) {
-        return files.forEach(function (x) { require(x); });
-    }
-
+function importFiles() {
     var importOrRequire = require('./import-or-require');
 
     tape.wait();

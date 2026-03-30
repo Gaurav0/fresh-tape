@@ -5,14 +5,8 @@ var tap = require('tap');
 var stripFullStack = require('./common').stripFullStack;
 var runProgram = require('./common').runProgram;
 
-var nodeVersion = process.versions.node;
-var majorVersion = nodeVersion.split('.')[0];
-
-if (Number(majorVersion) < 8) {
-    process.exit(0); // eslint-disable-line no-process-exit
-}
-
-var node17 = Number(majorVersion) >= 17;
+var majorVersion = Number(process.versions.node.split('.')[0]);
+var node17 = majorVersion >= 17;
 
 var lengthMessage = 'Cannot read property \'length\' of null';
 try {
