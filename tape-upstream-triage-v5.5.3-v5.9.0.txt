@@ -137,7 +137,7 @@ risk     action       triage  status   sha       subject
 6        reimplement  API    pending  e60aeca   [New] add `t.intercept()`
 -        skip         meta   skip     e1ce53b   v5.7.0
 -        skip         meta   skip     9851ca2   v4.17.0
-4        replace      deps   pending  9135b40   [Deps] update `@ljharb/through`, `resolve`
+4        replace      deps   omit     9135b40   [Deps] update `@ljharb/through`, `resolve`
 5        reimplement  lib    pending  13f23ed   [Fix] `default_stream`: add handling for IE < 9
 -        skip         meta   skip     5a77657   v5.7.1
 2        cherry-pick  deps   done     de34703   [Deps] update `call-bind`, `mock-property`, `object-inspect`
