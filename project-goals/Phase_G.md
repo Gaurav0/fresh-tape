@@ -6,25 +6,29 @@ Phase E and Phase F deliberately **did not** treat a fully green `npm test` or s
 
 **Primary outcomes**
 
-1. **`npm run tests-only`** passes locally on supported Node versions (same range as [`.github/workflows/node-tens.yml`](../.github/workflows/node-tens.yml): `>= 10.17 < 20`).
-2. **`npm run lint`** passes: **eclint** (EditorConfig) → **eslint** → **`tsc --noEmit test/typings.ts`** → **webpack** production build (see [`package.json`](../package.json) `scripts`).
-3. **`npm test`** is usable as an integration gate: `pretest` → `lint`, then `tests-only`, then `posttest` (`npm audit` production); align expectations with what CI actually runs (below).
+1. `**npm run tests-only`** passes locally on supported Node versions (same range as `[.github/workflows/node-tens.yml](../.github/workflows/node-tens.yml)`: `>= 10.17 < 20`).
+2. `**npm run lint**` passes: **eclint** (EditorConfig) → **eslint** → `**tsc --noEmit test/typings.ts`** → **webpack** production build (see `[package.json](../package.json)` `scripts`).
+3. `**npm test`** is usable as an integration gate: `pretest` → `lint`, then `tests-only`, then `posttest` (`npm audit` production); align expectations with what CI actually runs (below).
 
 ## Relationship to earlier phases
 
-| Phase | What it deferred for Phase G |
-|-------|------------------------------|
-| **E** | Full `tests-only` green; eslint/eclint as gates. |
+
+| Phase | What it deferred for Phase G                                       |
+| ----- | ------------------------------------------------------------------ |
+| **E** | Full `tests-only` green; eslint/eclint as gates.                   |
 | **F** | Same; plus risk-7 test rows unless a tiny test was needed for API. |
+
 
 Phase G **does not** reopen large API or architecture decisions settled in E/F unless a failing gate forces a minimal fix.
 
 ## CI vs local scripts (inventory)
 
-| Workflow | Command | Purpose |
-|----------|---------|---------|
-| [`node-tens.yml`](../.github/workflows/node-tens.yml) | `npm run tests-only` | Matrix Node 10.17–19, **no lint** in this job. |
-| [`node-pretest.yml`](../.github/workflows/node-pretest.yml) | pretest pipeline | Lint / pretest checks via shared `ljharb/actions` workflow. |
+
+| Workflow                                                    | Command              | Purpose                                                     |
+| ----------------------------------------------------------- | -------------------- | ----------------------------------------------------------- |
+| `[node-tens.yml](../.github/workflows/node-tens.yml)`       | `npm run tests-only` | Matrix Node 10.17–19, **no lint** in this job.              |
+| `[node-pretest.yml](../.github/workflows/node-pretest.yml)` | pretest pipeline     | Lint / pretest checks via shared `ljharb/actions` workflow. |
+
 
 **Implication:** Getting **only** `tests-only` green is necessary but not sufficient for a full `npm test` green; **lint** (including eclint) must pass separately. Optionally document in CI docs or add a job that runs `npm test` end-to-end if desired later.
 
@@ -34,12 +38,12 @@ Phase G **does not** reopen large API or architecture decisions settled in E/F u
 
 - Run `npm run tests-only` on a clean tree; record **failing files** and whether failures are stack-order, timing, or logic.
 - Triage: **fix in product** vs **fix expectation in test** vs **skip with reason** (document in triage or commit message).
-- Pay attention to **spawned subprocess** tests (`test/import/`, exit tests, etc.): align with upstream commits flagged **pending** in [`tape-upstream-triage-v5.5.3-v5.9.0.md`](./tape-upstream-triage-v5.5.3-v5.9.0.md) (e.g. `d1987c0` import spawn, `9133c93` throws tests cleanup) where applicable.
+- Pay attention to **spawned subprocess** tests (`test/import/`, exit tests, etc.): align with upstream commits flagged **pending** in `[tape-upstream-triage-v5.5.3-v5.9.0.md](./tape-upstream-triage-v5.5.3-v5.9.0.md)` (e.g. `d1987c0` import spawn, `9133c93` throws tests cleanup) where applicable.
 
 ### 2. Baseline — EditorConfig / eclint
 
 - `npm run prelint` → **eclint** over tracked files (see `prelint:files` in `package.json`).
-- **`.editorconfig`**: `indent_style = tab` for most `*.js`; `*.md` uses spaces; `readme.markdown` has relaxed rules. Fix files that use spaces where tabs are required, or adjust scoped `[path]` rules only if the team agrees (prefer fixing whitespace to match existing convention).
+- `**.editorconfig`**: `indent_style = tab` for most `*.js`; `*.md` uses spaces; `readme.markdown` has relaxed rules. Fix files that use spaces where tabs are required, or adjust scoped `[path]` rules only if the team agrees (prefer fixing whitespace to match existing convention).
 
 ### 3. ESLint
 
@@ -60,22 +64,23 @@ Phase G **does not** reopen large API or architecture decisions settled in E/F u
 
 ### 7. Optional — compatibility suite
 
-- Project goals mention `test/compat/` plus main tests green. Today there is at least [`test/compat/smoke.js`](../test/compat/smoke.js). Expand or wire into CI only if you want a named “compat” lane beyond `test/*.js`.
+- Project goals mention `test/compat/` plus main tests green. Today there is at least `[test/compat/smoke.js](../test/compat/smoke.js)`. Expand or wire into CI only if you want a named “compat” lane beyond `test/*.js`.
 
 ## Verification checklist
 
-- [ ] `npm run tests-only` — exit 0 on target Node(s).
-- [ ] `npm run prelint` / `npm run eclint` — exit 0.
-- [ ] `npm run lint` — exit 0 (full chain).
-- [ ] `npm test` — exit 0 (includes audit; may need network for `posttest` in some environments).
+- `npm run tests-only` — exit 0 on target Node(s).
+- `npm run prelint` / `npm run eclint` — exit 0.
+- `npm run lint` — exit 0 (full chain).
+- `npm test` — exit 0 (includes audit; may need network for `posttest` in some environments).
 
 ## Exit criteria (working definition)
 
 - **Required:** `tests-only` and `lint` both pass on the branch intended for release; no known silent skips that hide regressions (documented `tap.skip` / env skips are acceptable).
-- **CI:** Required workflows green on the PR; optional Node 20+ / future workflows treated per existing repo policy ([`node-twenties.yml`](../.github/workflows/node-twenties.yml), [`node-future.yml`](../.github/workflows/node-future.yml)).
+- **CI:** Required workflows green on the PR; optional Node 20+ / future workflows treated per existing repo policy (`[node-twenties.yml](../.github/workflows/node-twenties.yml)`, `[node-future.yml](../.github/workflows/node-future.yml)`).
 - **Triage:** Remaining **pending** rows either landed, **omit** with rationale, or explicitly deferred to a later release (listed in triage or changelog).
 
 ## Notes
 
 - **Node 25+** non-blocking is a **project goal** in the triage doc; do not block Phase G on newest Node if policy keeps those jobs informative only.
-- **`npm test` posttest** runs production audit; failures may be advisory—decide whether Phase G treats audit as hard gate or documents exceptions.
+- `**npm test` posttest** runs production audit; failures may be advisory—decide whether Phase G treats audit as hard gate or documents exceptions.
+
