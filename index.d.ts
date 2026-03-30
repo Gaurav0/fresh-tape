@@ -241,5 +241,11 @@ declare namespace tape {
          * Assert that string does not match the RegExp regexp. Will throw (not just fail) when the first two arguments are the wrong type.
          */
         doesNotMatch(actual: string, expected: RegExp, msg?: string, extra?: AssertOptions): void;
+
+        /**
+         * Call a custom assertion function with this test as `this` and optional extra arguments.
+         * The return value is passed through (e.g. a Promise for async assertions).
+         */
+        assertion(fn: (this: Test, ...args: any[]) => any, ...args: any[]): any;
     }
 }

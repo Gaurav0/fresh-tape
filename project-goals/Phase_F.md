@@ -21,7 +21,7 @@ Verify against implementation; mark **done** when API + behavior match upstream.
 - **capture / captureFn** — `9e21f7a`, `3d96d69` — **done** (implementation in `lib/test.js`, tests `test/capture.js` / `test/captureFn.js`, readme sections `t.capture` / `t.captureFn`).
 - **intercept** — `5d37060`, `e60aeca` — **done** (implementation in `lib/test.js`, test `test/intercept.js`, readme section `t.intercept`).
 - **TODO_IS_OK env** — `6cd06f5` — **done** (`Results` + `createHarness` in `index.js`, `test/todo.js`, readme).
-- **assertion** — `7ba18ac` (custom assertion helper; harness/test return-value story).
+- **assertion** — `7ba18ac` — **done** (implementation in `lib/test.js` incl. return passthrough per `2ad86d4`, `test/assertion.js`, readme `t.assertion`, `index.d.ts`).
 
 ## Suggested workstreams (order flexible)
 

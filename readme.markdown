@@ -469,6 +469,27 @@ Additionally, explicitly setting `configurable` to `false` is not permitted, so 
 
 Modeled after [tap](https://tapjs.github.io/tapjs/modules/_tapjs_intercept.html).
 
+## t.assertion(fn, ...args)
+
+If you want to write your own custom assertions, you can invoke them with this method: `fn` is called with the test instance as `this`, and any additional arguments you pass after `fn`.
+
+The return value of `fn` is returned from `t.assertion` (for example, so a test callback can `return t.assertion(...)` when `fn` yields a Promise).
+
+```js
+function isAnswer(value, msg) {
+    // eslint-disable-next-line no-invalid-this
+    this.equal(value, 42, msg || 'value must be the answer to life, the universe, and everything');
+}
+
+test('is this the answer?', (t) => {
+    t.assertion(isAnswer, 42); // passes, default message
+    t.assertion(isAnswer, 42, 'what is 6 * 9?'); // passes, custom message
+    t.assertion(isAnswer, 54, 'what is 6 * 9!'); // fails, custom message
+
+    t.end();
+});
+```
+
 ## var htest = test.createHarness()
 
 Create a new test harness instance, which is a function like `test()`, but with a new pending stack and test state.

@@ -13,7 +13,7 @@
 | C | Risk-3 CLI parity for bin/fresh-tape (e.g. ignore-pattern, strict, literal paths); CLI uses import-or-require without a has-dynamic-import probe (Option B). |
 | D | Risk-4 "replace" workstreams: stay on readable-stream instead of @ljharb/through/resumer; objectMode paths use Writable; nullish-safe default_stream writes; IE-era rows omitted. |
 | E | Risk-5 lib-only upstream parity in lib/ (harness, Results, Test, intercept stack, throws, stack/at, assertion, perf cleanups). Out of scope: full tests-only green and eslint/eclint as gates. |
-| F | Planned (sync/phase-f): risk-6 API-only upstream parity. Details: [`Phase_F.md`](./Phase_F.md). Same exclusions as Phase E. |
+| F | Risk-6 API-only upstream parity. Details: [`Phase_F.md`](./Phase_F.md). Same exclusions as Phase E. |
 
 **Phase F plan:** [`Phase_F.md`](./Phase_F.md)
 
@@ -215,7 +215,7 @@ Phase F (planned, sync/phase-f): track risk-6 "reimplement API" rows; full plan 
 | 2 | cherry-pick | deps | done | `732268b` | [Deps] update `array.prototype.every`, `string.prototype.trim` |
 | 1 | cherry-pick | tests | done | `8d40837` | [Tests] strip node’s deprecation warnings |
 | 1 | cherry-pick | meta | done | `7b39e14` | [Dev Deps] update `@ljharb/eslint-config` |
-| 6 | reimplement | API | pending | `7ba18ac` | [New] add `t.assertion` |
+| 6 | reimplement | API | done | `7ba18ac` | [New] add `t.assertion` |
 | 1 | cherry-pick | tests | done | `d2f0778` | [Tests] handle more stack trace variation in Node v0.8 |
 | - | skip | meta | skip | `998d9cd` | v5.8.0 |
 | 5 | reimplement | lib | done | `2ad86d4` | [Fix] `assertion`: pass through assertion return value, for promises |
