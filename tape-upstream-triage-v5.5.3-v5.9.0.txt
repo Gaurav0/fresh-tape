@@ -1,6 +1,6 @@
 # tape upstream triage: v5.5.3 .. v5.9.0 (tape-testing/tape)
 # Regenerate: python3 scripts/triage-tape-commits.py /path/to/tape
-# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms. Phase D workstream D2 2026-03-30: 56d7a8b omit — objectMode tests use readable-stream Writable; upstream through(null,null,{objectMode}) fix N/A. Phase D workstream D3 2026-03-30: eff3725 done (nullish default_stream: wrap Writable.write so flush matches through() before Node rejects chunks); 13f23ed omit (IE < 9 not targeted). Phase E (sync/phase-e) 2026-03-30: scope = risk 5 reimplement lib only; out of scope: full tests-only green, eclint/eslint as gates. Phase E Results (ex D3): 9bbbcfe / 878a500 / 5f831b4 done. Phase E throws: 0cd7a2c / 0731b5f / 1b2681d done (test/throws.js aligned with upstream tape). Phase E harness+stack+at: 8a1cccc / 19cfc8f / dc64c08 / ce4ce8a / 70de437 / e244e64 (superseded by callBind) / af4d109 / 9cbae8a / 6a5df50 done; f6d30cf omit (no upstream intercept path in fork).
+# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms. Phase D workstream D2 2026-03-30: 56d7a8b omit — objectMode tests use readable-stream Writable; upstream through(null,null,{objectMode}) fix N/A. Phase D workstream D3 2026-03-30: eff3725 done (nullish default_stream: wrap Writable.write so flush matches through() before Node rejects chunks); 13f23ed omit (IE < 9 not targeted). Phase E (sync/phase-e) 2026-03-30: scope = risk 5 reimplement lib only; out of scope: full tests-only green, eclint/eslint as gates. Phase E Results (ex D3): 9bbbcfe / 878a500 / 5f831b4 done. Phase E throws: 0cd7a2c / 0731b5f / 1b2681d done (test/throws.js aligned with upstream tape). Phase E harness+stack+at: 8a1cccc / 19cfc8f / dc64c08 / ce4ce8a / 70de437 / e244e64 (superseded by callBind) / af4d109 / 9cbae8a / 6a5df50 done; f6d30cf omit (no upstream intercept path in fork). Phase E inline typeof (getTestArgs): 5ba89c9 / c45db4e done.
 #
 # Project goals (fresh-tape fork):
 #   • "Done" for the 5.9.0 release line: ship a small compatibility suite (test/compat/) plus main tests green.
@@ -128,10 +128,10 @@ risk     action       triage  status   sha       subject
 1        cherry-pick  meta   done     92aaa51   Revert "[meta] ensure `not-in-publish`‘s absence does not fail anything"
 1        cherry-pick  meta   done     df46769   [Dev Deps] update `array.prototype.flatmap`
 2        cherry-pick  deps   done     4e2db4d   [Deps] update `array.prototype.every`, `glob`, `string.prototype.trim`
-5        reimplement  lib    pending  5ba89c9   [Performance] use inline `typeof`
+5        reimplement  lib    done     5ba89c9   [Performance] use inline `typeof`
 5        reimplement  lib    pending  135a952   [Refactor] prefer second `.then` arg over `.catch`
 6        reimplement  API    pending  9e21f7a   [New] add `t.capture` and `t.captureFn`, modeled after tap
-5        reimplement  lib    pending  c45db4e   [Performance] use inline `typeof`
+5        reimplement  lib    done     c45db4e   [Performance] use inline `typeof`
 6        reimplement  API    pending  3d96d69   [New] add `t.capture` and `t.captureFn`, modeled after tap
 6        reimplement  API    pending  5d37060   [New] add `t.intercept()`
 6        reimplement  API    pending  e60aeca   [New] add `t.intercept()`
