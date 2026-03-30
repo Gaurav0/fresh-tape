@@ -103,17 +103,17 @@ $ fresh-tape -r ./my/local/module tests/**/*.js
 
 Please note that all modules loaded using the `-r` flag will run *before* any tests, regardless of when they are specified. For example, `fresh-tape -r a b -r c` will actually load `a` and `c` *before* loading `b`, since they are flagged as required modules.
 
-## CLI: ESM and dynamic `import` (fork minimal)
+## CLI: ESM and dynamic `import`
 
-Upstream `tape` uses the `has-dynamic-import` package to detect whether `import()` is available and, when not, loads every test file with synchronous `require()` only. **fresh-tape does not do that** (Option B: minimal fork): the `fresh-tape` binary always loads test files through `import-or-require`, which uses dynamic `import()` for ESM (`.mjs` and `package.json` `"type":"module"` `.js`). There is **no** runtime probe and **no** fallback path for runtimes that lack `import()`.
+Upstream `tape` uses the `has-dynamic-import` package to detect whether `import()` is available and, when not, loads every test file with synchronous `require()` only. **fresh-tape does not do that** The `fresh-tape` binary always loads test files through `import-or-require`, which uses dynamic `import()` for ESM (`.mjs` and `package.json` `"type":"module"` `.js`). There is **no** runtime probe and **no** fallback path for runtimes that lack `import()`.
 
 Use a Node version that supports dynamic `import()` from CommonJS (see `engines` in `package.json`; **Node ≥ 10.17**). Older Node releases cannot run this CLI entry for ESM tests; stick to CommonJS test files if you must target them, and prefer a newer Node for full parity with upstream `tape`’s CLI behavior on mixed ESM/CJS suites.
 
-# things that go well with tape
+# Things that go well with tape
 
 `fresh-tape` maintains a fairly minimal core. Additional features are usually added by using another module alongside `fresh-tape`.
 
-## pretty reporters
+## Pretty reporters
 
 The default TAP output is good for machines and humans that are robots.
 
@@ -147,11 +147,11 @@ If you want a more colorful / pretty output there are lots of modules on npm tha
 
 To use them, try `node test/index.js | tap-spec` or pipe it into one of the modules of your choice!
 
-## uncaught exceptions
+## Uncaught Exceptions
 
 By default, uncaught exceptions in your tests will not be intercepted, and will cause `fresh-tape` to crash. If you find this behavior undesirable, use [`tape-catch`](https://github.com/michaelrhodes/tape-catch) to report any exceptions as TAP errors.
 
-## other
+## Other
 
 - CoffeeScript support with https://www.npmjs.com/package/coffeetape
 - ES6 support with https://www.npmjs.com/package/babel-tape-runner or https://www.npmjs.com/package/buble-tape-runner
@@ -161,7 +161,7 @@ By default, uncaught exceptions in your tests will not be intercepted, and will 
 - In-process reporting with https://github.com/DavidAnson/tape-player
 - Describe blocks with https://github.com/mattriley/tape-describe
 
-# command-line flags
+# Command-line Flags
 
 While running tests, top-level configurations can be passed via the command line to specify desired behavior.
 
