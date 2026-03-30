@@ -87,9 +87,10 @@
         "prelint": "npm-run-posix-or-windows eclint",
         "lint": "eslint --ext .js,.cjs,.mjs . bin/* && tsc --noEmit test/typings.ts && webpack --mode production --bail ./index.js",
         "pretest": "npm run lint",
-        "test": "npm run tests-only",
+        "test": "npm-run-posix-or-windows tests-only",
         "posttest": "aud --production",
         "tests-only": "tap -Rtap --no-check-coverage --no-coverage-report test/*.js",
+        "tests-only:windows": "tap -Rtap --no-check-coverage --no-coverage-report test/*.js",
         "test:example": "find example -name '*.js' | grep -v fail | grep -v static | xargs tap"
     },
     "testling": {
