@@ -1,6 +1,6 @@
 # tape upstream triage: v5.5.3 .. v5.9.0 (tape-testing/tape)
 # Regenerate: python3 scripts/triage-tape-commits.py /path/to/tape
-# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import).
+# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms.
 #
 # Project goals (fresh-tape fork):
 #   • "Done" for the 5.9.0 release line: ship a small compatibility suite (test/compat/) plus main tests green.
@@ -119,7 +119,7 @@ risk     action       triage  status   sha       subject
 2        cherry-pick  deps   done     109a791   [Deps] update `deep-equal`
 5        reimplement  lib    pending  9bbbcfe   [Fix] Results: show a skip string on tests, not just on assertions
 -        skip         meta   skip     fea1937   v5.6.5
-4        replace      deps   pending  c99680a   [Deps] switch from `through` and `resumer` to `@ljharb/through` and `@ljharb/resumer`
+4        replace      deps   omit     c99680a   [Deps] switch from `through` and `resumer` to `@ljharb/through` and `@ljharb/resumer`
 1        cherry-pick  meta   pending  7123111   [Dev Deps] update `@ljharb/eslint-config`, `array.prototype.flatmap`, `aud`
 2        cherry-pick  deps   done     feee094   [Deps] update `minimist`, `resolve`, `string.prototype.trim`
 -        skip         deps   skip     a8a7d67   [Deps] switch from `through` and `resumer` to `@ljharb/through` and `@ljharb/resumer`
