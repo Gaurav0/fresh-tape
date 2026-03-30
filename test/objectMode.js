@@ -3,7 +3,7 @@
 var tap = require('tap');
 var tape = require('../');
 var forEach = require('for-each');
-var Writable = require('readable-stream').Writable;
+var Writable = require('@leichtgewicht/readable-stream').Writable;
 
 tap.test('object results', function (assert) {
     var objects = [];

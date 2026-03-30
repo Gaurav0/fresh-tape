@@ -4,7 +4,7 @@ var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
 var Test = require('./lib/test');
 var Results = require('./lib/results');
-var Transform = require('readable-stream').Transform;
+var Transform = require('@leichtgewicht/readable-stream').Transform;
 
 var canEmitExit = typeof process !== 'undefined' && process
     && typeof process.on === 'function' && process.browser !== true;
