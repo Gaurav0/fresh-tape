@@ -27,21 +27,21 @@ tap.test('preserves stack trace with newlines', function (tt) {
     var parser = stream.pipe(new TapParser());
     var stackTrace = 'foo\n  bar';
 
-	parser.once('assert', function (data) {
-		// tap-parser may add fields (e.g. fullname); compare stable subset
-		var assertData = assign({}, data);
-		delete assertData.fullname;
-		tt.deepEqual(assertData, {
+    parser.once('assert', function (data) {
+        // tap-parser may add fields (e.g. fullname); compare stable subset
+        var assertData = assign({}, data);
+        delete assertData.fullname;
+        tt.deepEqual(assertData, {
             ok: false,
             id: 1,
             name: 'Error: Preserve stack',
             diag: {
                 stack: stackTrace,
                 operator: 'error',
-				at: assertData.diag.at // we don't care about this one
-			}
-		});
-	});
+                at: assertData.diag.at // we don't care about this one
+            }
+        });
+    });
 
     stream.pipe(concat({ encoding: 'string' }, function (body) {
         var strippedBody = stripAt(body);
@@ -181,15 +181,15 @@ tap.test('preserves stack trace for failed assertions', function (tt) {
     var parser = stream.pipe(new TapParser());
 
     var stack = '';
-	parser.once('assert', function (data) {
-		var assertData = assign({}, data);
-		delete assertData.fullname;
-		tt.equal(typeof data.diag.at, 'string');
-		tt.equal(typeof data.diag.stack, 'string');
-		var at = data.diag.at || '';
-		stack = data.diag.stack || '';
-		tt.ok((/^Error: true should be false(\n {4}at .+)+/).exec(stack), 'stack should be a stack');
-		tt.deepEqual(assertData, {
+    parser.once('assert', function (data) {
+        var assertData = assign({}, data);
+        delete assertData.fullname;
+        tt.equal(typeof data.diag.at, 'string');
+        tt.equal(typeof data.diag.stack, 'string');
+        var at = data.diag.at || '';
+        stack = data.diag.stack || '';
+        tt.ok((/^Error: true should be false(\n {4}at .+)+/).exec(stack), 'stack should be a stack');
+        tt.deepEqual(assertData, {
             ok: false,
             id: 1,
             name: 'true should be false',
@@ -246,15 +246,15 @@ tap.test('preserves stack trace for failed assertions where actual===falsy', fun
     var parser = stream.pipe(new TapParser());
 
     var stack = '';
-	parser.once('assert', function (data) {
-		var assertData = assign({}, data);
-		delete assertData.fullname;
-		tt.equal(typeof data.diag.at, 'string');
-		tt.equal(typeof data.diag.stack, 'string');
-		var at = data.diag.at || '';
-		stack = data.diag.stack || '';
-		tt.ok((/^Error: false should be true(\n {4}at .+)+/).exec(stack), 'stack should be a stack');
-		tt.deepEqual(assertData, {
+    parser.once('assert', function (data) {
+        var assertData = assign({}, data);
+        delete assertData.fullname;
+        tt.equal(typeof data.diag.at, 'string');
+        tt.equal(typeof data.diag.stack, 'string');
+        var at = data.diag.at || '';
+        stack = data.diag.stack || '';
+        tt.ok((/^Error: false should be true(\n {4}at .+)+/).exec(stack), 'stack should be a stack');
+        tt.deepEqual(assertData, {
             ok: false,
             id: 1,
             name: 'false should be true',

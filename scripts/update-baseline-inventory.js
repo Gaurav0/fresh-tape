@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 'use strict';
 
 /**
@@ -34,7 +35,7 @@ while ((m = re.exec(tapText)) !== null) {
     var st;
     if (m[1] === 'not ok') {
         st = 'fail';
-    } else if (/# SKIP\b/.test(line)) {
+    } else if ((/# SKIP\b/).test(line)) {
         st = 'skip';
     } else {
         st = 'pass';
@@ -65,8 +66,8 @@ files.forEach(function (f) {
 lines.push('');
 lines.push('## Aggregate line from tap');
 var agg = tapText.match(/^# (failed \d+ of \d+ tests|tests? \d+)$/m);
-lines.push(agg ? ('`' + agg[1] + '`') : '_(run `npm run test:baseline` to populate)_');
+lines.push(agg ? '`' + agg[1] + '`' : '_(run `npm run test:baseline` to populate)_');
 lines.push('');
 
 fs.writeFileSync(inventoryPath, lines.join('\n'), 'utf8');
-console.log('Wrote', inventoryPath);
+process.stdout.write('Wrote ' + inventoryPath + '\n');

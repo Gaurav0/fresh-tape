@@ -8,7 +8,9 @@ var objectKeys = require('object-keys');
 
 var opts = parseOpts(process.argv.slice(2), {
     alias: { r: 'require', i: 'ignore' },
-    string: ['require', 'ignore', 'ignore-pattern'],
+    string: [
+        'require', 'ignore', 'ignore-pattern'
+    ],
     boolean: ['only', 'strict'],
     default: { r: [], i: null, 'ignore-pattern': null, only: null, strict: false }
 });
