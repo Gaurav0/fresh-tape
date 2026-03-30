@@ -11,6 +11,8 @@ but otherwise is committed to stay compatible with tape.
 
 **`fresh-tape` can be compiled with webpack as-is!**
 
+Method and CLI documentation below is aligned with upstream [tape](https://github.com/tape-testing/tape) **v5.9.0** `readme.markdown` (including updates between **v5.6.0** and **v5.9.0**), except for **fresh-tape** naming, the **CLI: ESM and dynamic `import`** section, `--strict` / `engines`, and other fork-specific notes.
+
 [![github actions][actions-image]][actions-url]
 [![coverage][codecov-image]][codecov-url]
 [![License][license-image]][license-url]
@@ -219,7 +221,7 @@ Alternatively, the environment variable `NODE_TAPE_NO_ONLY_TEST` can be set to `
 
 # methods
 
-The assertion methods in `tape` are heavily influenced or copied from the methods in [node-tap](https://github.com/isaacs/node-tap).
+The assertion methods in `fresh-tape` are heavily influenced or copied from the methods in [node-tap](https://github.com/isaacs/node-tap) (same surface as upstream [`tape`](https://www.npmjs.com/package/tape) 5.9.x).
 
 ```js
 var test = require('fresh-tape')
@@ -249,13 +251,13 @@ Generate a new test that will be skipped over.
 
 ## test.onFinish(fn)
 
-The onFinish hook will get invoked when ALL `tape` tests have finished right before `tape` is about to print the test summary.
+The onFinish hook will get invoked when ALL `fresh-tape` tests have finished right before `fresh-tape` is about to print the test summary.
 
 `fn` is called with no arguments, and its return value is ignored.
 
 ## test.onFailure(fn)
 
-The onFailure hook will get invoked whenever any `tape` tests has failed.
+The onFailure hook will get invoked whenever any `fresh-tape` test has failed.
 
 `fn` is called with no arguments, and its return value is ignored.
 
@@ -413,7 +415,8 @@ You may pass the same options that [`test()`](#testname-opts-cb) accepts.
 
 ## t.comment(message)
 
-Print a message without breaking the tap output. (Useful when using e.g. `tap-colorize` where output is buffered & `console.log` will print in incorrect order vis-a-vis tap output.)
+Print a message without breaking the tap output.
+(Useful when using e.g. `tap-colorize` where output is buffered & `console.log` will print in incorrect order vis-a-vis tap output.)
 
 Multiline output will be split by `\n` characters, and each one printed as a comment.
 
@@ -467,8 +470,6 @@ Providing both `desc.get` and `desc.set` are optional and can still be useful fo
 `desc` must be a valid property descriptor, meaning that `get`/`set` are mutually exclusive with `writable`/`value`.
 Additionally, explicitly setting `configurable` to `false` is not permitted, so that the property can be restored.
 
-Modeled after [tap](https://tapjs.github.io/tapjs/modules/_tapjs_intercept.html).
-
 ## t.assertion(fn, ...args)
 
 If you want to write your own custom assertions, you can invoke them with this method: `fn` is called with the test instance as `this`, and any additional arguments you pass after `fn`.
@@ -498,7 +499,7 @@ By default the TAP output goes to `console.log()`. You can pipe the output to so
 
 ## test.only([name], [opts], cb)
 
-Like `test([name], [opts], cb)` except if you use `.only` this is the only test case that will run for the entire process, all other test cases using `tape` will be ignored.
+Like `test([name], [opts], cb)` except if you use `.only` this is the only test case that will run for the entire process, all other test cases using `fresh-tape` will be ignored.
 
 Check out how the usage of [the --no-only flag](#--no-only) could help ensure there is no `.only` test running in a specified environment.
 
@@ -583,7 +584,7 @@ $ node object.js test/x.js test/y.js
 A convenient alternative to achieve the same:
 ```js
 // report.js
-var test = require('tape');
+var test = require('fresh-tape');
 
 test.createStream({ objectMode: true }).on('data', function (row) {
     console.log(JSON.stringify(row)) // for example
@@ -591,7 +592,7 @@ test.createStream({ objectMode: true }).on('data', function (row) {
 ```
 and then:
 ```sh
-$ tape -r ./report.js **/*.test.js
+$ fresh-tape -r ./report.js **/*.test.js
 ```
 
 # install
@@ -609,7 +610,7 @@ Sometimes `t.end()` doesn’t preserve the expected output ordering.
 For instance the following:
 
 ```js
-var test = require('tape');
+var test = require('fresh-tape');
 
 test('first', function (t) {
 
@@ -645,7 +646,7 @@ because `second` and `third` assume `first` has ended before it actually does.
 Use `t.plan()` instead to let other tests know they should wait:
 
 ```diff
-var test = require('tape');
+var test = require('fresh-tape');
 
 test('first', function (t) {
 
