@@ -29,7 +29,7 @@
 #   skip    — triage row is skip (version tags, not applicable).
 #   omit    — intentionally skipped (fork paths, risky eslint-only diffs, …).
 #   pending — not merged yet or not matched by the rules above (verify manually).
-#             Remaining risk-2 deps (Phase B): mock-property, hasown (await lib / optional dep work).
+#             Risk-2 hasown + mock-property: landed with lib `has` → `hasown` (see package.json).
 #
 risk     action       triage  status   sha       subject
 -------  -----------  ------  -------  --------  -------
@@ -140,11 +140,11 @@ risk     action       triage  status   sha       subject
 4        replace      deps   pending  9135b40   [Deps] update `@ljharb/through`, `resolve`
 5        reimplement  lib    pending  13f23ed   [Fix] `default_stream`: add handling for IE < 9
 -        skip         meta   skip     5a77657   v5.7.1
-2        cherry-pick  deps   pending  de34703   [Deps] update `call-bind`, `mock-property`, `object-inspect`
+2        cherry-pick  deps   done     de34703   [Deps] update `call-bind`, `mock-property`, `object-inspect`
 7        reimplement  tests  pending  56d7a8b   [Tests] use `through` properly
 5        reimplement  lib    pending  489736a   [Refactor] use `hasown` instead of `has`
 -        skip         meta   skip     3404436   v5.7.2
-2        cherry-pick  deps   pending  d90c29a   [Deps] update `mock-property`
+2        cherry-pick  deps   done     d90c29a   [Deps] update `mock-property`
 2        cherry-pick  deps   done     5d26485   [Deps] update `deep-equal`
 1        cherry-pick  meta   pending  19af506   [actions] skip `engines` check since bin/tape and the rest of the lib conflict
 1        cherry-pick  tests  pending  d1987c0   [Tests] ensure the import tests spawn properly
@@ -175,7 +175,7 @@ risk     action       triage  status   sha       subject
 4        replace      deps   pending  bff9dad   [Deps] update `@ljharb/resumer`
 5        reimplement  lib    pending  eff3725   [Fix] `default_stream`: do not error on nullish data
 4        replace      deps   pending  af2fe68   [Deps] update `@ljharb/resumer`
-2        cherry-pick  deps   pending  82e7d71   [Deps] update `call-bind`, `hasown`
+2        cherry-pick  deps   done     82e7d71   [Deps] update `call-bind`, `hasown`
 -        skip         lib    skip     93c1d12   [Fix] in IE 8, `TypeError` does not inherit from `Error`
 1        cherry-pick  meta   pending  410e9e4   [actions] remove redundant finisher
 -        skip         meta   skip     70d8f91   v5.7.5
@@ -202,7 +202,7 @@ risk     action       triage  status   sha       subject
 1        cherry-pick  meta   done     c827ac9   [readme] notLooseEqual(s) is not an alias for notDeepLooseEqual
 2        cherry-pick  deps   done     9a47aba   [Deps] update `object-inspect`
 1        cherry-pick  tests  done     681d4bd   [Tests] use `npm audit` instead of `aud`
-2        cherry-pick  deps   pending  ecfb546   [Deps] update `mock-property`
+2        cherry-pick  deps   done     ecfb546   [Deps] update `mock-property`
 1        cherry-pick  meta   done     b7bc72f   [Dev Deps] update `auto-changelog`
 1        cherry-pick  meta   done     627d1e7   [Dev Deps] add missing peer dep
 -        skip         CLI    skip     2d5c8dc   [Fix] in engines that lack dynamic import, have some output
