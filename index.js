@@ -3,7 +3,7 @@
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
 var Test = require('./lib/test');
-var createResult = require('./lib/results');
+var Results = require('./lib/results');
 var Transform = require('readable-stream').Transform;
 
 var canEmitExit = typeof process !== 'undefined' && process
@@ -137,7 +137,7 @@ module.exports.test = module.exports; // tap compat
 module.exports.test.skip = Test.skip;
 
 function createHarness(conf_) {
-    var results = createResult();
+    var results = new Results();
     if (!conf_ || conf_.autoclose !== false) {
         results.once('done', function () { results.close(); });
     }
