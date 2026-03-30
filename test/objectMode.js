@@ -30,13 +30,17 @@ tap.test('object results', function (assert) {
                 } else if (object.type === 'test') {
                     testIds.push(object.id);
 
+                    if (object.name === 'child1' || object.name === 'child2' || object.name === 'child3') {
+                        assert.equal(object.parent, 0, 'nested test rows expose parent id (878a500)');
+                    }
+
                     if (object.skip) {
                         skips++;
                     } else if (object.todo) {
                         todos++;
                     }
                 } else if (object.type === 'end') {
-                    endIds.push(object.text);
+                    endIds.push(object.test);
                     // test object should exist
                     assert.notEqual(testIds.indexOf(object.test), -1);
                 }
