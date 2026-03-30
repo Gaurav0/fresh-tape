@@ -187,7 +187,7 @@ risk     action       triage  status   sha       subject
 2        cherry-pick  deps   done     1b01656   [Deps] update `object-is`
 1        cherry-pick  meta   pending  eafacf6   [Dev Deps] remove unused `intl-fallback-symbol`, `is-core-module`
 5        reimplement  lib    pending  91a83b6   [Refactor] `test`: reduce binding by using polyfill entrypoints
-4        replace      deps   pending  77952d0   [Deps] update `@ljharb/resumer`, `@ljharb/through`, `hasown`
+4        replace      deps   omit     77952d0   [Deps] update `@ljharb/resumer`, `@ljharb/through`, `hasown`
 1        cherry-pick  tests  done     aa7de58   [Tests] increase coverage
 2        cherry-pick  deps   done     732268b   [Deps] update `array.prototype.every`, `string.prototype.trim`
 1        cherry-pick  tests  done     8d40837   [Tests] strip node’s deprecation warnings
