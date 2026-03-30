@@ -1,6 +1,9 @@
 {
-    "name": "fresh-tape",
+    "name": "@gaurav9576/fresh-tape",
     "version": "5.9.0",
+    "publishConfig": {
+        "access": "public"
+    },
     "description": "fresh tap-producing test harness for node and browsers; webpack-friendly streams, aligned with tape 5.9.x",
     "main": "index.js",
     "browser": {
@@ -101,9 +104,9 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/martinheidegger/fresh-tape.git"
+        "url": "git://github.com/gaurav0/fresh-tape.git"
     },
-    "homepage": "https://github.com/martinheidegger/fresh-tape",
+    "homepage": "https://github.com/gaurav0/fresh-tape",
     "keywords": [
         "tap",
         "test",
