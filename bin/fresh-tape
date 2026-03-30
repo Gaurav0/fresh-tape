@@ -9,8 +9,8 @@ var objectKeys = require('object-keys');
 var opts = parseOpts(process.argv.slice(2), {
     alias: { r: 'require', i: 'ignore' },
     string: ['require', 'ignore', 'ignore-pattern'],
-    boolean: ['only'],
-    default: { r: [], i: null, 'ignore-pattern': null, only: null }
+    boolean: ['only', 'strict'],
+    default: { r: [], i: null, 'ignore-pattern': null, only: null, strict: false }
 });
 
 if (typeof opts.only === 'boolean') {
@@ -91,8 +91,10 @@ var files = opts._.reduce(function (result, arg) {
     return requireResolve(resolvePath(cwd, file));
 });
 
-// nextTick runs outside any promise chain, avoiding unhandled rejections when only loading CJS files
-process.nextTick(importFiles);
+if (opts.strict && files.length === 0) {
+    console.error('No test files found!');
+    process.exit(127);
+}
 
 var tape = require('../');
 
@@ -107,7 +109,14 @@ function importFiles() {
         }) : importOrRequire(file);
     }, null);
 
-    return filesPromise ? filesPromise.then(function () { tape.run(); }) : tape.run();
+    if (filesPromise) {
+        filesPromise.then(function () { tape.run(); });
+    } else {
+        tape.run();
+    }
 }
+
+// nextTick runs outside any promise chain, avoiding unhandled rejections when only loading CJS files
+process.nextTick(importFiles);
 
 // vim: ft=javascript
