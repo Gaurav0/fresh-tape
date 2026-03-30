@@ -1,6 +1,6 @@
 # tape upstream triage: v5.5.3 .. v5.9.0 (tape-testing/tape)
 # Regenerate: python3 scripts/triage-tape-commits.py /path/to/tape
-# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms. Phase D workstream D2 2026-03-30: 56d7a8b omit — objectMode tests use readable-stream Writable; upstream through(null,null,{objectMode}) fix N/A. Phase D workstream D3 2026-03-30: eff3725 done (nullish default_stream: wrap Writable.write so flush matches through() before Node rejects chunks); 13f23ed omit (IE < 9 not targeted). Phase E (sync/phase-e) 2026-03-30: scope = risk 5 reimplement lib only; out of scope: full tests-only green, eclint/eslint as gates. Phase E Results (ex D3): 9bbbcfe / 878a500 / 5f831b4 done.
+# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms. Phase D workstream D2 2026-03-30: 56d7a8b omit — objectMode tests use readable-stream Writable; upstream through(null,null,{objectMode}) fix N/A. Phase D workstream D3 2026-03-30: eff3725 done (nullish default_stream: wrap Writable.write so flush matches through() before Node rejects chunks); 13f23ed omit (IE < 9 not targeted). Phase E (sync/phase-e) 2026-03-30: scope = risk 5 reimplement lib only; out of scope: full tests-only green, eclint/eslint as gates. Phase E Results (ex D3): 9bbbcfe / 878a500 / 5f831b4 done. Phase E throws: 0cd7a2c / 0731b5f / 1b2681d done (test/throws.js aligned with upstream tape).
 #
 # Project goals (fresh-tape fork):
 #   • "Done" for the 5.9.0 release line: ship a small compatibility suite (test/compat/) plus main tests green.
@@ -96,13 +96,13 @@ risk     action       triage  status   sha       subject
 3        cherry-pick  CLI    done     8c9fe8e   [New] `bin/tape`: add `--ignore-pattern` flag
 1        cherry-pick  meta   done     afd8f64   [Dev Deps] update `@ljharb/eslint-config`, `aud`
 2        cherry-pick  deps   done     09906f3   [Deps] update `deep-equal`, `object-inspect`
-5        reimplement  lib    pending  0cd7a2c   [Fix] `throws`: avoid crashing on a nonconfigurable or nonextensible `expected`
+5        reimplement  lib    done     0cd7a2c   [Fix] `throws`: avoid crashing on a nonconfigurable or nonextensible `expected`
 -        skip         meta   skip     40f6ad3   v5.6.2
 -        skip         meta   skip     23aa477   v5.6.3
 1        cherry-pick  meta   pending  1b3ad24   [Dev Deps] update `@ljharb/eslint-config`, `array.prototype.flatmap`, `aud`
 2        cherry-pick  deps   done     01edce8   [Deps] update `defined`, `minimist`, `object-inspect`, `string.prototype.trim`
 1        cherry-pick  meta   done     834453c   [actions] update rebase action
-5        reimplement  lib    pending  0731b5f   [Fix] `throws`: avoid crashing on a nonconfigurable or nonextensible `expected`
+5        reimplement  lib    done     0731b5f   [Fix] `throws`: avoid crashing on a nonconfigurable or nonextensible `expected`
 -        skip         meta   skip     a892b65   v4.16.2
 1        cherry-pick  meta   done     c1b619d   [readme] improve t.throws description for Function
 2        cherry-pick  deps   done     7e7c3d0   [Deps] update `minimist`
@@ -171,7 +171,7 @@ risk     action       triage  status   sha       subject
 4        replace      deps   omit     ad0dd2e   [Deps] update `@ljharb/resumer`
 4        replace      deps   omit     5360d20   [Deps] update `@ljharb/through`
 1        cherry-pick  tests  pending  9133c93   [Tests] clean up throws tests
-5        reimplement  lib    pending  1b2681d   [Fix] `throws`: fix crash when throwing primitives with a non-empty expected object
+5        reimplement  lib    done     1b2681d   [Fix] `throws`: fix crash when throwing primitives with a non-empty expected object
 4        replace      deps   omit     bff9dad   [Deps] update `@ljharb/resumer`
 5        reimplement  lib    done     eff3725   [Fix] `default_stream`: do not error on nullish data
 4        replace      deps   omit     af2fe68   [Deps] update `@ljharb/resumer`
