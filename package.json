@@ -23,7 +23,7 @@
         "test": "test"
     },
     "engines": {
-        "node": ">=10"
+        "node": ">=10.17"
     },
     "dependencies": {
         "array.prototype.every": "^1.1.6",

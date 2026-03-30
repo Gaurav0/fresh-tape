@@ -1,7 +1,7 @@
 name: 'Tests: node.js 25+ (non-blocking)'
 
 # Newer majors (25, 26, …): run for signal; failures do not fail the workflow.
-# Required coverage stays on node-tens / node-twenties (10–24).
+# Required coverage stays on node-tens / node-twenties (10.17–24).
 
 on: [pull_request, push]
 
