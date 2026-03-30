@@ -11,6 +11,4 @@ dist/
 coverage/
 .nyc_output/
 
-.npmignore
-
 test-baseline/
