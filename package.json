@@ -26,7 +26,6 @@
         "node": ">=10.17"
     },
     "dependencies": {
-        "array.prototype.every": "^1.1.6",
         "call-bind": "^1.0.7",
         "deep-equal": "^2.2.3",
         "defined": "^1.0.1",
