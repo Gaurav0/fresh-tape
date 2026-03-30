@@ -1,7 +1,7 @@
 {
     "name": "fresh-tape",
-    "version": "5.5.3",
-    "description": "fresh tap-producing test harness for node and browsers (with dependencies updated beyond node 4)",
+    "version": "5.9.0",
+    "description": "fresh tap-producing test harness for node and browsers; webpack-friendly streams, aligned with tape 5.9.x",
     "main": "index.js",
     "browser": {
         "fs": false
