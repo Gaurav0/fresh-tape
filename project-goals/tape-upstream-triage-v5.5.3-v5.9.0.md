@@ -156,8 +156,8 @@ Phase F (planned, sync/phase-f): track risk-6 "reimplement API" rows; full plan 
 | 6 | reimplement | API | done | `9e21f7a` | [New] add `t.capture` and `t.captureFn`, modeled after tap |
 | 5 | reimplement | lib | done | `c45db4e` | [Performance] use inline `typeof` |
 | 6 | reimplement | API | done | `3d96d69` | [New] add `t.capture` and `t.captureFn`, modeled after tap |
-| 6 | reimplement | API | pending | `5d37060` | [New] add `t.intercept()` |
-| 6 | reimplement | API | pending | `e60aeca` | [New] add `t.intercept()` |
+| 6 | reimplement | API | done | `5d37060` | [New] add `t.intercept()` |
+| 6 | reimplement | API | done | `e60aeca` | [New] add `t.intercept()` |
 | - | skip | meta | skip | `e1ce53b` | v5.7.0 |
 | - | skip | meta | skip | `9851ca2` | v4.17.0 |
 | 4 | replace | deps | omit | `9135b40` | [Deps] update `@ljharb/through`, `resolve` |
