@@ -88,6 +88,7 @@
         "test": "npm-run-posix-or-windows tests-only",
         "posttest": "npx npm@'>=10.2' audit --production",
         "tests-only": "tap -Rtap --no-check-coverage --no-coverage-report test/*.js",
+        "tests-compat": "tap -Rtap --no-check-coverage --no-coverage-report test/compat/*.js",
         "tests-only:windows": "tap -Rtap --no-check-coverage --no-coverage-report test/*.js",
         "test:baseline": "bash scripts/run-baseline.sh",
         "test:example": "find example -name '*.js' | grep -v fail | grep -v static | xargs tap"

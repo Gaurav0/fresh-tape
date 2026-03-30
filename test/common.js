@@ -102,14 +102,16 @@ module.exports.stripFullStack = function (output) {
         // Handle more stack trace variation in Node v0.8
         /at(:?) Test\.t /g,
         'at$1 Test.<anonymous> '
-    ).replace(
-        // V8 sometimes names the test callback Test._cb, sometimes Test.<anonymous>
-        /^(\s+at: )Test\.(?:_cb|<anonymous>)( )/gm,
-        '$1Test.<anonymous>$2'
-    ).replace(
-        /^(\s+at )Test\.(?:_cb|<anonymous>)( )/gm,
-        '$1Test.<anonymous>$2'
     )
+        .replace(
+            // V8 sometimes names the test callback Test._cb, sometimes Test.<anonymous>
+            /^(\s+at: )Test\.(?:_cb|<anonymous>)( )/gm,
+            '$1Test.<anonymous>$2'
+        )
+        .replace(
+            /^(\s+at )Test\.(?:_cb|<anonymous>)( )/gm,
+            '$1Test.<anonymous>$2'
+        )
         .split(/\r?\n/g);
 };
 

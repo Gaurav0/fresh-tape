@@ -64,11 +64,12 @@ Phase G **does not** reopen large API or architecture decisions settled in E/F u
 
 ### 7. Optional — compatibility suite
 
-- Project goals mention `test/compat/` plus main tests green. Today there is at least `[test/compat/smoke.js](../test/compat/smoke.js)`. Expand or wire into CI only if you want a named “compat” lane beyond `test/*.js`.
+- **`npm run tests-compat`** runs [`test/compat/*.js`](../test/compat/) (consumer-contract smoke tests). See [`test/compat/README.md`](../test/compat/README.md). Wire into CI as a separate job if desired; main regression coverage remains **`npm run tests-only`** (`test/*.js`).
 
 ## Verification checklist
 
 - `npm run tests-only` — exit 0 on target Node(s).
+- `npm run tests-compat` — exit 0 (optional lane).
 - `npm run prelint` / `npm run eclint` — exit 0.
 - `npm run lint` — exit 0 (full chain).
 - `npm test` — exit 0 (includes audit; may need network for `posttest` in some environments).

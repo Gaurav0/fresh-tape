@@ -2,12 +2,14 @@
 
 /**
  * Minimal compatibility suite: ensures the package loads and matches basic tape-style API.
- * Expand with cases that compare behavior to `tape` once upstream parity work lands.
  */
 
 var tape = require('../..');
+var tap = require('tap');
 
-tape('compat: fresh-tape exports a callable test harness', function (t) {
+tap.test('compat: smoke — loads and exports harness', function (t) {
     t.equal(typeof tape, 'function', 'default export is a function');
+    t.equal(typeof tape.createHarness, 'function', 'createHarness');
+    t.equal(typeof tape.Test, 'function', 'Test');
     t.end();
 });
