@@ -1,6 +1,6 @@
 # tape upstream triage: v5.5.3 .. v5.9.0 (tape-testing/tape)
 # Regenerate: python3 scripts/triage-tape-commits.py /path/to/tape
-# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms. Phase D workstream D2 2026-03-30: 56d7a8b omit — objectMode tests use readable-stream Writable; upstream through(null,null,{objectMode}) fix N/A. Phase D workstream D3 2026-03-30: eff3725 done (nullish default_stream: wrap Writable.write so flush matches through() before Node rejects chunks); 13f23ed omit (IE < 9 not targeted). Phase E (sync/phase-e) 2026-03-30: scope = risk 5 reimplement lib only; out of scope: full tests-only green, eclint/eslint as gates. Phase E Results (ex D3): 9bbbcfe / 878a500 / 5f831b4 done. Phase E throws: 0cd7a2c / 0731b5f / 1b2681d done (test/throws.js aligned with upstream tape).
+# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms. Phase D workstream D2 2026-03-30: 56d7a8b omit — objectMode tests use readable-stream Writable; upstream through(null,null,{objectMode}) fix N/A. Phase D workstream D3 2026-03-30: eff3725 done (nullish default_stream: wrap Writable.write so flush matches through() before Node rejects chunks); 13f23ed omit (IE < 9 not targeted). Phase E (sync/phase-e) 2026-03-30: scope = risk 5 reimplement lib only; out of scope: full tests-only green, eclint/eslint as gates. Phase E Results (ex D3): 9bbbcfe / 878a500 / 5f831b4 done. Phase E throws: 0cd7a2c / 0731b5f / 1b2681d done (test/throws.js aligned with upstream tape). Phase E harness+stack+at: 8a1cccc / 19cfc8f / dc64c08 / ce4ce8a / 70de437 / e244e64 (superseded by callBind) / af4d109 / 9cbae8a / 6a5df50 done; f6d30cf omit (no upstream intercept path in fork).
 #
 # Project goals (fresh-tape fork):
 #   • "Done" for the 5.9.0 release line: ship a small compatibility suite (test/compat/) plus main tests green.
@@ -111,10 +111,10 @@ risk     action       triage  status   sha       subject
 1        cherry-pick  meta   done     0e80800   [Dev Deps] pin `jackspeak` since 2.1.2+ depends on npm aliases, which kill the install process in npm < 6
 1        cherry-pick  meta   done     26a75bb   [readme] Link to explain what TAP is
 1        cherry-pick  meta   done     a576f8d   [Dev Deps] pin `jackspeak` since 2.1.2+ depends on npm aliases, which kill the install process in npm < 6
-5        reimplement  lib    pending  e244e64   [Refactor] `Test`: skip binding for a non-function value
+5        reimplement  lib    done     e244e64   [Refactor] `Test`: skip binding for a non-function value
 1        cherry-pick  meta   done     a6a5eee   [Dev Deps] update `@ljharb/eslint-config`, `aud`
 2        cherry-pick  deps   done     2043b2e   [Deps] update `deep-equal`
-5        reimplement  lib    pending  70de437   [Performance] use `call-bind` for autobinding
+5        reimplement  lib    done     70de437   [Performance] use `call-bind` for autobinding
 -        skip         meta   skip     41fc81a   v5.6.4
 2        cherry-pick  deps   done     109a791   [Deps] update `deep-equal`
 5        reimplement  lib    done     9bbbcfe   [Fix] Results: show a skip string on tests, not just on assertions
@@ -148,25 +148,25 @@ risk     action       triage  status   sha       subject
 2        cherry-pick  deps   done     5d26485   [Deps] update `deep-equal`
 1        cherry-pick  meta   pending  19af506   [actions] skip `engines` check since bin/tape and the rest of the lib conflict
 1        cherry-pick  tests  pending  d1987c0   [Tests] ensure the import tests spawn properly
-5        reimplement  lib    pending  af4d109   [Refactor] `Test`: cleaner `at` logic
+5        reimplement  lib    done     af4d109   [Refactor] `Test`: cleaner `at` logic
 5        reimplement  lib    pending  4640a91   [Fix] `intercept`: give a proper error message with a readonly Symbol property
-5        reimplement  lib    pending  9cbae8a   [Fix] stack trace path parsing on windows
+5        reimplement  lib    done     9cbae8a   [Fix] stack trace path parsing on windows
 3        cherry-pick  CLI    done     a2b74f9   [Fix] `bin/tape`: ignore options on windows
 1        cherry-pick  tests  done     4a57fbe   [Tests] Spawn processes during tests using execPath so that the tests pass on windows
 1        cherry-pick  tests  done     bcf6ce7   [Tests] fix `npm test` on windows
 1        cherry-pick  meta   done     ceabd99   [Dev Deps] update `aud`, `npmignore`
 2        cherry-pick  deps   done     201e650   [Deps] update `object.assign`
 5        reimplement  lib    pending  78fd0d6   [Performance] avoid the extra call frame to `new` it
-5        reimplement  lib    pending  8a1cccc   [Fix] `createHarness`: when no `conf` is provided, `only` should not throw
-5        reimplement  lib    pending  19cfc8f   [Refactor] `getHarness`: avoid mutating `opts`, account for only one internal callsite for `createExitHarness`
+5        reimplement  lib    done     8a1cccc   [Fix] `createHarness`: when no `conf` is provided, `only` should not throw
+5        reimplement  lib    done     19cfc8f   [Refactor] `getHarness`: avoid mutating `opts`, account for only one internal callsite for `createExitHarness`
 5        reimplement  lib    done     878a500   [Refactor] `Results` `createStream`: clean up `_push` handler
-5        reimplement  lib    pending  dc64c08   [Refactor] `_assert`: avoid reassigning arguments
-5        reimplement  lib    pending  f6d30cf   [Refactor] `Test`: a more precise check
+5        reimplement  lib    done     dc64c08   [Refactor] `_assert`: avoid reassigning arguments
+5        reimplement  lib    omit     f6d30cf   [Refactor] `Test`: a more precise check
 5        reimplement  lib    done     5f831b4   [Refactor] `Results`: use `this` instead of `self`
 1        cherry-pick  meta   done     85f593b   [meta] add `sideEffects` flag
 -        skip         meta   skip     56569c3   v5.7.3
 -        skip         deps   skip     1e50cb3   [Deps] update `has-dynamic-import`
-5        reimplement  lib    pending  6a5df50   [Fix] handle native ESM URLs in `at:`
+5        reimplement  lib    done     6a5df50   [Fix] handle native ESM URLs in `at:`
 -        skip         meta   skip     22befd6   v5.7.4
 4        replace      deps   omit     ad0dd2e   [Deps] update `@ljharb/resumer`
 4        replace      deps   omit     5360d20   [Deps] update `@ljharb/through`
@@ -182,7 +182,7 @@ risk     action       triage  status   sha       subject
 1        cherry-pick  meta   done     77cabeb   [meta] update URLs
 1        cherry-pick  meta   done     d39cb8d   [meta] simplify `exports`
 6        reimplement  API    pending  6cd06f5   [New] allow TODO tests to be "ok" with env var `TODO_IS_OK`
-5        reimplement  lib    pending  ce4ce8a   [Refactor] `Test`: minor tweaks
+5        reimplement  lib    done     ce4ce8a   [Refactor] `Test`: minor tweaks
 1        cherry-pick  meta   pending  f9eac5b   [meta] simplify `exports`
 2        cherry-pick  deps   done     1b01656   [Deps] update `object-is`
 1        cherry-pick  meta   pending  eafacf6   [Dev Deps] remove unused `intl-fallback-symbol`, `is-core-module`
