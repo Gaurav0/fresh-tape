@@ -1,6 +1,6 @@
 # tape upstream triage: v5.5.3 .. v5.9.0 (tape-testing/tape)
 # Regenerate: python3 scripts/triage-tape-commits.py /path/to/tape
-# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms.
+# Status column: Phase A from git log on sync/phase-a; Phase B risk-2 deps batch 2026-03-30 (sync/phase-b, ecd8491); Phase C risk-3 CLI parity in bin/fresh-tape 2026-03-30 (tests ignore-pattern, strict, cli-literal-path; Option B: no has-dynamic-import). Phase D risk-4 replace D1 2026-03-30 (sync/phase-d): @ljharb/through/resumer N/A — lib uses readable-stream Transforms. Phase D workstream D2 2026-03-30: 56d7a8b omit — objectMode tests use readable-stream Writable; upstream through(null,null,{objectMode}) fix N/A.
 #
 # Project goals (fresh-tape fork):
 #   • "Done" for the 5.9.0 release line: ship a small compatibility suite (test/compat/) plus main tests green.
@@ -141,7 +141,7 @@ risk     action       triage  status   sha       subject
 5        reimplement  lib    pending  13f23ed   [Fix] `default_stream`: add handling for IE < 9
 -        skip         meta   skip     5a77657   v5.7.1
 2        cherry-pick  deps   done     de34703   [Deps] update `call-bind`, `mock-property`, `object-inspect`
-7        reimplement  tests  pending  56d7a8b   [Tests] use `through` properly
+7        reimplement  tests  omit     56d7a8b   [Tests] use `through` properly
 5        reimplement  lib    pending  489736a   [Refactor] use `hasown` instead of `has`
 -        skip         meta   skip     3404436   v5.7.2
 2        cherry-pick  deps   done     d90c29a   [Deps] update `mock-property`
