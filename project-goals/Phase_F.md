@@ -41,3 +41,5 @@ Verify against implementation; mark **done** when API + behavior match upstream.
 
 - All risk-6 rows either **done** (API parity) or **omit**/**skip** with a one-line rationale in triage or commit log.
 - No known intentional API divergence from upstream except fork-documented exceptions (name, streams stack, etc.).
+
+**Next:** full test and lint gates are [**Phase G**](./Phase_G.md).

@@ -4,7 +4,7 @@
 
 **Regenerate:** `python3 scripts/triage-tape-commits.py /path/to/tape`
 
-## Phases A–F (brief; no per-commit tracking here)
+## Phases A–G (brief; no per-commit tracking here)
 
 | Phase | What it covered |
 |-------|-----------------|
@@ -14,8 +14,11 @@
 | D | Risk-4 "replace" workstreams: stay on readable-stream instead of @ljharb/through/resumer; objectMode paths use Writable; nullish-safe default_stream writes; IE-era rows omitted. |
 | E | Risk-5 lib-only upstream parity in lib/ (harness, Results, Test, intercept stack, throws, stack/at, assertion, perf cleanups). Out of scope: full tests-only green and eslint/eclint as gates. |
 | F | Risk-6 API-only upstream parity. Details: [`Phase_F.md`](./Phase_F.md). Same exclusions as Phase E. |
+| G | Quality gates: `tests-only` green, `lint` (eclint, eslint, typings, webpack), `npm test` alignment with CI. Details: [`Phase_G.md`](./Phase_G.md). |
 
 **Phase F plan:** [`Phase_F.md`](./Phase_F.md)
+
+**Phase G plan:** [`Phase_G.md`](./Phase_G.md)
 
 ## Project goals (fresh-tape fork)
 
