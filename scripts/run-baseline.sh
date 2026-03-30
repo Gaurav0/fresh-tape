@@ -32,8 +32,8 @@ run_stage eclint npm run eclint
 run_stage eslint npx eslint --ext .js,.cjs,.mjs . bin/*
 run_stage tsc npx tsc --noEmit test/typings.ts
 run_stage webpack npx webpack --mode production --bail ./index.js
-run_stage tap-tests npx tap -Rtap --no-check-coverage --no-coverage-report --no-bail --no-color test/*.js
-run_stage tap-compat npx tap -Rtap --no-check-coverage --no-coverage-report --no-bail --no-color test/compat/*.js
+run_stage tap-tests npx tap -Rtap --no-coverage --no-check-coverage --no-coverage-report --no-esm --no-bail --no-color test/*.js
+run_stage tap-compat npx tap -Rtap --no-coverage --no-check-coverage --no-coverage-report --no-esm --no-bail --no-color test/compat/*.js
 
 node "${ROOT}/scripts/update-baseline-inventory.js"
 
