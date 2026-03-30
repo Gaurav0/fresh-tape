@@ -81,13 +81,13 @@ $ fresh-tape "tests/**/*.js"
 
 ## Preloading modules
 
-Additionally, it is possible to make `fresh-tape` load one or more modules before running any tests, by using the `-r` or `--require` flag. Here's an example that loads [babel-register](http://babeljs.io/docs/usage/require/) before running any tests, to allow for JIT compilation:
+Additionally, it is possible to make `fresh-tape` load one or more modules before running any tests, by using the `-r` or `--require` flag. Here's an example that loads [babel-register](https://babeljs.io/docs/usage/require/) before running any tests, to allow for JIT compilation:
 
 ```sh
 $ fresh-tape -r babel-register tests/**/*.js
 ```
 
-Depending on the module you're loading, you may be able to parameterize it using environment variables or auxiliary files. Babel, for instance, will load options from [`.babelrc`](http://babeljs.io/docs/usage/babelrc/) at runtime.
+Depending on the module you're loading, you may be able to parameterize it using environment variables or auxiliary files. Babel, for instance, will load options from [`.babelrc`](https://babeljs.io/docs/usage/babelrc/) at runtime.
 
 The `-r` flag behaves exactly like node's `require`, and uses the same module resolution algorithm. This means that if you need to load local modules, you have to prepend their path with `./` or `../` accordingly.
 
@@ -111,7 +111,7 @@ If you want a more colorful / pretty output there are lots of modules on npm tha
 
 - [tap-spec](https://github.com/scottcorgan/tap-spec)
 - [tap-dot](https://github.com/scottcorgan/tap-dot)
-- [faucet](https://github.com/ljharb/faucet)
+- [faucet](https://github.com/tape-testing/faucet)
 - [tap-bail](https://github.com/juliangruber/tap-bail)
 - [tap-browser-color](https://github.com/kirbysayshi/tap-browser-color)
 - [tap-json](https://github.com/gummesson/tap-json)
