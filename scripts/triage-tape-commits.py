@@ -88,7 +88,7 @@ def action(subject: str, kind: str, dedupe_seen: set) -> str:
     if "update `has-dynamic-import`" in s:
         return "skip"
     if "lack dynamic import" in sl and "output" in sl:
-        return "skip"  # fresh-tape targets Node 10+; change to reimplement if you widen engines
+        return "skip"  # fresh-tape targets Node 12+; change to reimplement if you widen engines
 
     # Release-only tag lines (no patch to apply by itself)
     if re.match(r"^v?\d+\.\d+\.\d+\s*$", s) or re.match(r"^\d+\.\d+\.\d+\s*$", s):

@@ -1,6 +1,7 @@
 'use strict';
 
 var defined = require('defined');
+var assign = require('object.assign');
 var createDefaultStream = require('./lib/default_stream');
 var Test = require('./lib/test');
 var Results = require('./lib/results');
@@ -44,7 +45,7 @@ module.exports = (function () {
         var options = opts || {};
         if (!harness) {
             var output = new Transform(options.objectMode
-                ? Object.assign({
+                ? assign({
                     objectMode: true, highWaterMark: 16, transform: passthrough
                 }, options)
                 : options);
