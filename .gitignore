@@ -11,4 +11,7 @@ dist/
 coverage/
 .nyc_output/
 
-test-baseline/
+/test-baseline/
+/output/
+
+.tool-versions
