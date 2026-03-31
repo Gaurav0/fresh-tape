@@ -13,6 +13,6 @@ tap.test('compat: deep entrypoints (same files as package exports)', function (t
     t.equal(typeof Test, 'function', 'lib/test');
     t.equal(typeof Results, 'function', 'lib/results');
     t.equal(typeof defaultStream, 'function', 'lib/default_stream');
-    t.equal(pkg.name, 'fresh-tape', 'package.json via path');
+    t.equal(pkg.name, '@gaurav9576/fresh-tape', 'package.json via path');
     t.end();
 });
