@@ -14,5 +14,8 @@ tap.test('compat: public exports surface', function (t) {
     t.equal(typeof tape.onFinish, 'function', 'onFinish');
     t.equal(typeof tape.onFailure, 'function', 'onFailure');
     t.equal(typeof tape.createStream, 'function', 'createStream');
+    t.equal(typeof tape.wait, 'function', 'wait');
+    t.equal(typeof tape.run, 'function', 'run');
+    t.equal(typeof tape.getHarness, 'function', 'getHarness');
     t.end();
 });
