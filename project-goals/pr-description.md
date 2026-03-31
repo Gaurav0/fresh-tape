@@ -1,6 +1,10 @@
-# Pull request: CI, tooling, and test robustness (tape 5.9.0 API parity)
+# Pull request: Tape 5.9.0 API parity; CI, tooling, and test robustness; drop node < 10 support
 
-**Target:** [`martinheidegger/fresh-tape`](https://github.com/martinheidegger/fresh-tape) `main`
+**Published as** `@gaurav9576/fresh-tape@5.9.0` for anyone who would like to test it in their projects.
+
+**Target:** [martinheidegger/fresh-tape](https://github.com/martinheidegger/fresh-tape) `main`
+
+**See tests passing:** https://github.com/Gaurav0/fresh-tape
 
 ## Summary
 
@@ -28,7 +32,7 @@ The changes below fix **CI** across Node 10–11, current LTS, and **Node 22+**,
 
 ### Dependencies & packaging
 
-- Replace the **`readable-stream` tarball** with a normal dependency **`@leichtgewicht/readable-stream@3.6.0`** and update **`require()`** call sites. Keeps the same streams3 userland stack the README relies on for **webpack-friendly** builds.
+- Replace the **`readable-stream` tarball** with a normal dependency `**@leichtgewicht/readable-stream@3.6.0**` and update `**require()**` call sites. Keeps the same streams3 userland stack the README relies on for **webpack-friendly** builds.
 - **`prepublish`**: replace the old `not-in-publish || npm run prepublishOnly` pattern (problematic when **`npm`** is not the script runner, e.g. **bun** / **pnpm**) with a **no-op** `prepublish` so tooling that expects the script name still sees it; **`prepublishOnly`** continues to run **`safe-publish-latest`** on publish.
 - Remove unused **`in-publish`** devDependency.
 
