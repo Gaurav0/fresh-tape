@@ -83,7 +83,7 @@ tap.test('timeoutAfter with Promises', { skip: typeof Promise === 'undefined' },
             return new Promise(function (resolve) {
                 setTimeout(function () {
                     resolve();
-                }, 10);
+                }, 100);
             });
         });
 
@@ -94,7 +94,7 @@ tap.test('timeoutAfter with Promises', { skip: typeof Promise === 'undefined' },
             return new Promise(function (_, reject) {
                 setTimeout(function () {
                     reject(new Error('intentional async rejection'));
-                }, 10);
+                }, 100);
             });
         });
     });

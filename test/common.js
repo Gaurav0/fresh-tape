@@ -132,7 +132,9 @@ module.exports.runProgram = function (folderName, fileName, cb) {
         result.stderr = stderrRows;
     }));
 
-    ps.on('exit', function (code) {
+    // Use 'close', not 'exit': 'exit' can fire before stdio streams finish, so
+    // concat-stream may not have populated stdout/stderr yet (flaky null).
+    ps.on('close', function (code) {
         result.exitCode = code;
         cb(result);
     });
