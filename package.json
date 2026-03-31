@@ -32,7 +32,7 @@
         "defined": "^1.0.1",
         "dotignore": "^0.1.2",
         "get-package-type": "^0.1.0",
-        "glob": "^7.2.3",
+        "globv7": "^1.0.0",
         "inherits": "^2.0.4",
         "is-regex": "^1.2.1",
         "minimist": "^1.2.8",

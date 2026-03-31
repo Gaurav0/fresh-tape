@@ -58,7 +58,7 @@ if (ignoreStr) {
     matcher = ignore.createMatcher(ignoreStr);
 }
 
-var glob = require('glob');
+var glob = require('globv7');
 
 var files = opts._.reduce(function (result, arg) {
     if (glob.hasMagic(arg)) {
@@ -70,12 +70,11 @@ var files = opts._.reduce(function (result, arg) {
             throw new TypeError('unknown error: glob.sync("' + arg + '") did not return an array or throw. Please report this.');
         }
 
-        // Workaround for glob v7 always replacing backslashes with forward slashes on windows
+        // Workaround for globv7 (glob v7) always replacing backslashes with forward slashes on windows.
         // This causes dotignore to not match the paths properly.
-        // This is fixed in newer version of glob, however we can not upgrade because it drops
-        // support for older node versions that we still want to support in tape.
-        // If glob is updated in the future this workaround can be removed, however note that
-        // the output of glob must then be sorted here because glob no longer does that.
+        // Newer major `glob` releases fix path style but require newer Node; we use `globv7` instead.
+        // If this workaround is removed, ensure dotignore still matches paths on Windows; sort glob
+        // results if you need deterministic order.
         // (also, backslashes and forward slashes should be ordered the same)
         if (path.sep === '\\') {
             globFiles = globFiles.map(function (globFile) {

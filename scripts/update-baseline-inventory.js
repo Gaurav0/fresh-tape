@@ -9,7 +9,7 @@
 
 var fs = require('fs');
 var path = require('path');
-var glob = require('glob');
+var glob = require('globv7');
 
 var root = path.join(__dirname, '..');
 var outDir = path.join(root, 'test-baseline');
