@@ -10,5 +10,5 @@ jobs:
     uses: ljharb/actions/.github/workflows/node.yml@main
     with:
       range: '>= 20 < 25'
-      type: minors
+      type: majors
       command: npm run tests-only
