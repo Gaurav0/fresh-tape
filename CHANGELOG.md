@@ -12,7 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Dependencies**: Remove `object-is`, `object-keys`, `array.prototype.every`, and `string.prototype.trim` in favor of native `Object.is`, `Object.keys`, `Array.prototype.every`, and `String.prototype.trim` (via `call-bind` / `callBound` where behavior must match the former polyfills, e.g. `t.comment()`).
-- **Type definitions**: Expand `index.d.ts` to match the tape 5.9.x API (`Harness`, `wait` / `run` / `getHarness`, the `test` alias, `Test` constructor and static `skip`, `objectPrintDepth`, `teardown` / `capture` / `captureFn` / `intercept`, and `throws` / `doesNotThrow` / `comment` overloads). Extend `test/typings.ts` accordingly.
+- **Type definitions**: Expand `index.d.ts` to match the tape 5.9.x API (`Harness`, `wait` / `run` / `getHarness`, the `test` alias, `Test` constructor and static `skip`, `objectPrintDepth`, `teardown` / `capture` / `captureFn` / `intercept`, and `throws` / `doesNotThrow` / `comment` overloads). Extend `test/typings.ts` accordingly, including compile checks for `t.assertion`.
+
+### Tests
+
+- Add compatibility coverage for the tape 5.9.x harness API: deferred default stream (`tape.wait()` / `tape.run()`), first-call `getHarness({ stream, objectMode, exit })`, `createHarness().close()` with `autoclose: false`, `new tape.Test()` wired like the harness, and export assertions for `wait`, `run`, and `getHarness`. Subprocess helpers used by those tests live under `test/compat/fixtures/` so they are not picked up by the `test/compat/*.js` tap glob.
+- In `test/common.js`, `runProgram` invokes its callback on the child process `close` event instead of `exit`, so piped `stdout` / `stderr` are fully consumed before assertions (avoids intermittent null `stdout` in `test/async-await.js` on fast hosts).
+- In `test/timeoutAfter.js`, use a 100ms delay (instead of 10ms) before resolving or rejecting the async subtest promises so `timeoutAfter(1)` reliably wins over slow async on Windows timer resolution.
 
 ### Packaging
 
