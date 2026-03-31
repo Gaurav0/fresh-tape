@@ -264,6 +264,17 @@ tape(name, (test: tape.Test) => {
     test.comment(msg);
     test.comment();
 
+    test.assertion(function (this: tape.Test) {
+        this.pass();
+    });
+    test.assertion(function (this: tape.Test, a: string) {
+        this.pass(a);
+    }, 'label');
+    var assertionRet: unknown = test.assertion(function (this: tape.Test) {
+        return Promise.resolve();
+    });
+    void assertionRet;
+
     test.match(actual, regex);
     test.match(actual, regex, msg);
     test.match(actual, regex, msg, extra);
