@@ -5,7 +5,7 @@ var spawn = require('child_process').spawn;
 var tap = require('tap');
 
 var runChild = function (name, t, next) {
-    var child = path.join(__dirname, name);
+    var child = path.join(__dirname, 'fixtures', name);
     var ps = spawn(process.execPath, [child], {
         cwd: path.join(__dirname, '..', '..')
     });

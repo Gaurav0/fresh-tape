@@ -1,6 +1,6 @@
 'use strict';
 
-var tape = require('../..');
+var tape = require('../../..');
 
 tape.wait();
 tape('compat wait-run child', function (t) {

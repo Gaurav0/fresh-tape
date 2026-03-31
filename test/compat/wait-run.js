@@ -5,7 +5,7 @@ var spawn = require('child_process').spawn;
 var tap = require('tap');
 
 tap.test('compat: tape.wait then tape.run wires default stream', function (t) {
-    var child = path.join(__dirname, 'wait-run-child.js');
+    var child = path.join(__dirname, 'fixtures', 'wait-run-child.js');
     var ps = spawn(process.execPath, [child], {
         cwd: path.join(__dirname, '..', '..')
     });

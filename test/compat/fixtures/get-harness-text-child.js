@@ -3,7 +3,7 @@
 /* eslint-disable no-process-exit -- subprocess asserts exit codes */
 
 var concat = require('concat-stream');
-var tape = require('../..');
+var tape = require('../../..');
 
 var sink = concat({ encoding: 'string' }, function (body) {
     var s = String(body);

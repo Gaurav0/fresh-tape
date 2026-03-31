@@ -3,7 +3,7 @@
 /* eslint-disable no-process-exit -- subprocess asserts exit codes */
 
 var Writable = require('@leichtgewicht/readable-stream').Writable;
-var tape = require('../..');
+var tape = require('../../..');
 
 var sawAssert = false;
 var w = new Writable({
