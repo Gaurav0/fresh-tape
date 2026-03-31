@@ -6,7 +6,6 @@ var concat = require('concat-stream');
 var forEach = require('for-each');
 var v = require('es-value-fixtures');
 var inspect = require('object-inspect');
-var flatMap = require('array.prototype.flatmap');
 
 var stripFullStack = require('./common').stripFullStack;
 
@@ -79,7 +78,7 @@ tap.test('teardowns', function (tt) {
             '# teardown runs after teardown error',
             '# teardown given non-function fails the test',
             'ok 9 should be truthy',
-            flatMap(v.nonFunctions, function (nonFunction, i) {
+            v.nonFunctions.flatMap(function (nonFunction, i) {
                 var offset = 10;
                 return [].concat(
                     'not ok ' + (offset + (i > 0 ? i + 1 : i)) + ' teardown: ' + inspect(nonFunction) + ' is not a function',
