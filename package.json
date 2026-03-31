@@ -89,13 +89,12 @@
     "testling": {
         "files": "test/browser/*.js",
         "browsers": [
-            "ie/6..latest",
-            "chrome/20..latest",
-            "firefox/10..latest",
-            "safari/latest",
-            "opera/11.0..latest",
-            "iphone/6",
-            "ipad/6"
+            "chrome/45..latest",
+            "firefox/34..latest",
+            "safari/9..latest",
+            "opera/32..latest",
+            "iphone/9",
+            "ipad/9"
         ]
     },
     "repository": {

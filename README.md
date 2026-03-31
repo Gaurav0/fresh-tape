@@ -11,6 +11,23 @@ but otherwise is committed to stay compatible with tape.
 
 **`fresh-tape` can be compiled with webpack as-is!**
 
+# Browser Support
+
+The **`testling`** field in [`package.json`](./package.json) records browser targets intended for bundles (for example after webpack). It is legacy [Testling-CI](https://ci.testling.com/guide/advanced_configuration) metadata; this repo does not run that service on every push, though `npm run lint` still builds a production webpack bundle from [`index.js`](./index.js).
+
+Declared ranges (see `testling.browsers` and `testling.files` in `package.json`):
+
+| Target | `package.json` entry | Typical meaning |
+|--------|----------------------|-----------------|
+| Chrome | `chrome/45..latest` | Chrome **45** and newer |
+| Firefox | `firefox/34..latest` | Firefox **34** and newer |
+| Safari | `safari/9..latest` | Safari **9** and newer |
+| Opera | `opera/32..latest` | Opera **32** and newer |
+| iPhone | `iphone/9` | Mobile Safari on **iOS 9** or later |
+| iPad | `ipad/9` | Mobile Safari on **iPad with iOS 9** or later |
+
+Browser-side tests are expected under `test/browser/*.js` (per `testling.files`). Older engines than the table above may need extra transpilation or polyfills beyond what this package ships.
+
 Method and CLI documentation below is aligned with upstream [tape](https://github.com/tape-testing/tape) **v5.9.0** `readme.markdown` (including updates between **v5.6.0** and **v5.9.0**), except for **fresh-tape** naming, the **CLI: ESM and dynamic `import`** section, `--strict` / `engines`, and other fork-specific notes.
 
 [![github actions][actions-image]][actions-url]
