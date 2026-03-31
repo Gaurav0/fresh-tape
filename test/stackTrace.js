@@ -7,11 +7,7 @@ var url = require('url');
 var concat = require('concat-stream');
 var TapParser = require('tap-parser');
 var assign = require('object.assign');
-var satisfies = require('semver').satisfies;
 var common = require('./common');
-
-// Node 10–11: dynamic import() for .mjs is not supported the same way as Node 12+ ("Error: Not supported").
-var skipESMStackTest = satisfies(process.version, '^10 || ^11');
 
 var getDiag = common.getDiag;
 
@@ -359,7 +355,7 @@ tap.test('CJS vs ESM: `at`', function (tt) {
         });
     });
 
-    tt.test('ESM', { skip: !url.pathToFileURL ? true : skipESMStackTest ? 'Node 10/11: ESM stack tests require Node >= 12' : false }, function (ttt) {
+    tt.test('ESM', { skip: !url.pathToFileURL }, function (ttt) {
         ttt.plan(2);
 
         var ps = spawnTape('stack_trace/esm.mjs');

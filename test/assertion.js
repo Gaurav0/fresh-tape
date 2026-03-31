@@ -3,7 +3,6 @@
 var tape = require('../');
 var tap = require('tap');
 var concat = require('concat-stream');
-var satisfies = require('semver').satisfies;
 
 var stripFullStack = require('./common').stripFullStack;
 
@@ -44,9 +43,7 @@ tap.test('using a custom assertion', function (tt) {
                     '    stack: |-',
                     '      SyntaxError: expected promise to reject; it fulfilled',
                     '          at $TEST/assertion.js:$LINE:$COL',
-                    satisfies(process.version, '^8 || ^9')
-                        ? '          at <anonymous>'
-                        : [],
+                    [],
                     '          [... stack stripped ...]',
                     '  ...'
                 ),

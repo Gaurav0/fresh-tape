@@ -4,12 +4,8 @@ var tap = require('tap');
 var spawn = require('child_process').spawn;
 var concat = require('concat-stream');
 var assign = require('object.assign');
-var satisfies = require('semver').satisfies;
 
-// Node 10–11 lack stable ESM / package "type":"module" support for these integration tests.
-var skipESMImportTests = satisfies(process.version, '^10 || ^11');
-
-tap.test('importing mjs files', { skip: skipESMImportTests ? 'Node 10/11: ESM import tests require Node >= 12' : false }, function (t) {
+tap.test('importing mjs files', function (t) {
     var tc = function (rows) {
         t.same(rows.toString('utf8'), [
             'TAP version 13',
@@ -47,7 +43,7 @@ tap.test('importing mjs files', { skip: skipESMImportTests ? 'Node 10/11: ESM im
     });
 });
 
-tap.test('importing type: "module" files', { skip: skipESMImportTests ? 'Node 10/11: ESM import tests require Node >= 12' : false }, function (t) {
+tap.test('importing type: "module" files', function (t) {
     var tc = function (rows) {
         t.same(rows.toString('utf8'), [
             'TAP version 13',
@@ -75,7 +71,7 @@ tap.test('importing type: "module" files', { skip: skipESMImportTests ? 'Node 10
     });
 });
 
-tap.test('errors importing test files', { skip: skipESMImportTests ? 'Node 10/11: ESM import error tests require Node >= 12' : false }, function (t) {
+tap.test('errors importing test files', function (t) {
     var createTest = function (options) {
         var message = options.error + ' in `' + options.mode + '` mode`';
         var ps = tape(options.files, { env: { NODE_OPTIONS: '--unhandled-rejections=' + options.mode } });
