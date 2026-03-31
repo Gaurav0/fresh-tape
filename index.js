@@ -13,6 +13,14 @@ var canExit = typeof process !== 'undefined' && process
 module.exports = (function () {
     var wait = false;
     var harness;
+
+    function getHarness(opts) {
+        if (!harness) {
+            harness = createExitHarness(opts || {}, wait);
+        }
+        return harness;
+    }
+
     var lazyLoad = function () {
         // eslint-disable-next-line no-invalid-this
         return getHarness().apply(this, arguments);
@@ -23,9 +31,9 @@ module.exports = (function () {
     };
 
     lazyLoad.run = function () {
-        var run = getHarness().run;
+        var runHarness = getHarness().run;
 
-        if (run) { run(); }
+        if (runHarness) { runHarness(); }
     };
 
     lazyLoad.only = function () {
@@ -57,14 +65,6 @@ module.exports = (function () {
     lazyLoad.getHarness = getHarness;
 
     return lazyLoad;
-
-    function getHarness(opts) {
-        if (!harness) {
-            // eslint-disable-next-line no-use-before-define
-            harness = createExitHarness(opts || {}, wait);
-        }
-        return harness;
-    }
 }());
 
 function createExitHarness(conf, wait) {
@@ -80,6 +80,17 @@ function createExitHarness(conf, wait) {
     });
     var running = false;
     var ended = false;
+
+    function run() {
+        if (running) { return; }
+        running = true;
+        var stream = harness.createStream({ objectMode: objectMode });
+        var es = stream.pipe(cStream || createDefaultStream());
+        if (canEmitExit && es) {
+            es.on('error', function () { harness._exitCode = 1; });
+        }
+        stream.on('end', function () { ended = true; });
+    }
 
     if (wait) {
         harness.run = run;
@@ -118,17 +129,6 @@ function createExitHarness(conf, wait) {
     });
 
     return harness;
-
-    function run() {
-        if (running) { return; }
-        running = true;
-        var stream = harness.createStream({ objectMode: objectMode });
-        var es = stream.pipe(cStream || createDefaultStream());
-        if (canEmitExit && es) {
-            es.on('error', function () { harness._exitCode = 1; });
-        }
-        stream.on('end', function () { ended = true; });
-    }
 }
 
 module.exports.createHarness = createHarness;

@@ -99,7 +99,7 @@ if (opts.strict && files.length === 0) {
 
 var tape = require('../');
 
-function importFiles() {
+var importFiles = function () {
     var importOrRequire = require('./import-or-require');
 
     tape.wait();
@@ -115,7 +115,7 @@ function importFiles() {
     } else {
         tape.run();
     }
-}
+};
 
 // nextTick runs outside any promise chain, avoiding unhandled rejections when only loading CJS files
 process.nextTick(importFiles);
