@@ -4,67 +4,69 @@ var tap = require('tap');
 var spawn = require('child_process').spawn;
 var concat = require('concat-stream');
 tap.test('importing mjs files', function (t) {
-    var tc = function (rows) {
-        t.same(rows.toString('utf8'), [
-            'TAP version 13',
-            '# mjs-a',
-            'ok 1 test ran',
-            '# mjs-b',
-            'ok 2 test ran after mjs-a',
-            '# mjs-c',
-            'ok 3 test ran after mjs-b',
-            '# mjs-d',
-            'ok 4 test ran after mjs-c',
-            '# mjs-e',
-            'ok 5 test ran after mjs-d',
-            '# mjs-f',
-            'ok 6 test ran after mjs-e',
-            '# mjs-g',
-            'ok 7 test ran after mjs-f',
-            '# mjs-h',
-            'ok 8 test ran after mjs-g',
-            '',
-            '1..8',
-            '# tests 8',
-            '# pass  8',
-            '',
-            '# ok'
-        ].join('\n') + '\n\n');
-    };
+    var expected = [
+        'TAP version 13',
+        '# mjs-a',
+        'ok 1 test ran',
+        '# mjs-b',
+        'ok 2 test ran after mjs-a',
+        '# mjs-c',
+        'ok 3 test ran after mjs-b',
+        '# mjs-d',
+        'ok 4 test ran after mjs-c',
+        '# mjs-e',
+        'ok 5 test ran after mjs-d',
+        '# mjs-f',
+        'ok 6 test ran after mjs-e',
+        '# mjs-g',
+        'ok 7 test ran after mjs-f',
+        '# mjs-h',
+        'ok 8 test ran after mjs-g',
+        '',
+        '1..8',
+        '# tests 8',
+        '# pass  8',
+        '',
+        '# ok'
+    ].join('\n') + '\n\n';
 
+    var stdout = '';
     var ps = tape('import/mjs-*.mjs');
-    ps.stdout.pipe(concat(tc));
+    ps.stdout.setEncoding('utf8');
+    ps.stdout.on('data', function (chunk) { stdout += chunk; });
     ps.stderr.pipe(process.stderr);
-    ps.on('exit', function (code) {
+    ps.on('close', function (code) {
         t.equal(code, 0);
+        t.same(stdout, expected);
         t.end();
     });
 });
 
 tap.test('importing type: "module" files', function (t) {
-    var tc = function (rows) {
-        t.same(rows.toString('utf8'), [
-            'TAP version 13',
-            '# package-type-a',
-            'ok 1 test ran',
-            '# package-type-b',
-            'ok 2 test ran after package-type-a',
-            '# package-type-c',
-            'ok 3 test ran after package-type-b',
-            '',
-            '1..3',
-            '# tests 3',
-            '# pass  3',
-            '',
-            '# ok'
-        ].join('\n') + '\n\n');
-    };
+    var expected = [
+        'TAP version 13',
+        '# package-type-a',
+        'ok 1 test ran',
+        '# package-type-b',
+        'ok 2 test ran after package-type-a',
+        '# package-type-c',
+        'ok 3 test ran after package-type-b',
+        '',
+        '1..3',
+        '# tests 3',
+        '# pass  3',
+        '',
+        '# ok'
+    ].join('\n') + '\n\n';
 
+    var stdout = '';
     var ps = tape('import/package_type/*.js');
-    ps.stdout.pipe(concat(tc));
+    ps.stdout.setEncoding('utf8');
+    ps.stdout.on('data', function (chunk) { stdout += chunk; });
     ps.stderr.pipe(process.stderr);
-    ps.on('exit', function (code) {
+    ps.on('close', function (code) {
         t.equal(code, 0);
+        t.same(stdout, expected);
         t.end();
     });
 });

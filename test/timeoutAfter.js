@@ -91,9 +91,9 @@ tap.test('timeoutAfter with Promises', { skip: typeof Promise === 'undefined' },
             st.plan(1);
             st.timeoutAfter(1);
 
-            return new Promise(function (reject) {
+            return new Promise(function (_, reject) {
                 setTimeout(function () {
-                    reject();
+                    reject(new Error('intentional async rejection'));
                 }, 10);
             });
         });

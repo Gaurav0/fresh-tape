@@ -319,8 +319,13 @@ tap.test('CJS vs ESM: `at`', function (tt) {
         ttt.plan(2);
 
         var ps = spawnTape('stack_trace/cjs.js');
-        ps.stdout.pipe(concat({ encoding: 'string' }, function (rows) {
-            ttt.same(processRows(rows), processRows([
+        var stdout = '';
+        ps.stdout.setEncoding('utf8');
+        ps.stdout.on('data', function (chunk) { stdout += chunk; });
+        ps.stderr.pipe(process.stderr);
+        ps.on('close', function (code) {
+            ttt.notEqual(code, 0);
+            ttt.same(processRows(stdout), processRows([
                 'TAP version 13',
                 '# test',
                 'not ok 1 should be strictly equal',
@@ -346,10 +351,6 @@ tap.test('CJS vs ESM: `at`', function (tt) {
                 '',
                 ''
             ]));
-        }));
-        ps.stderr.pipe(process.stderr);
-        ps.on('exit', function (code) {
-            ttt.notEqual(code, 0);
             ttt.end();
         });
     });
@@ -358,8 +359,13 @@ tap.test('CJS vs ESM: `at`', function (tt) {
         ttt.plan(2);
 
         var ps = spawnTape('stack_trace/esm.mjs');
-        ps.stdout.pipe(concat({ encoding: 'string' }, function (rows) {
-            ttt.same(processRows(rows), processRows([
+        var stdout = '';
+        ps.stdout.setEncoding('utf8');
+        ps.stdout.on('data', function (chunk) { stdout += chunk; });
+        ps.stderr.pipe(process.stderr);
+        ps.on('close', function (code) {
+            ttt.equal(code, 1);
+            ttt.same(processRows(stdout), processRows([
                 'TAP version 13',
                 '# test',
                 'not ok 1 should be strictly equal',
@@ -387,10 +393,6 @@ tap.test('CJS vs ESM: `at`', function (tt) {
                 '',
                 ''
             ]));
-        }));
-        ps.stderr.pipe(process.stderr);
-        ps.on('exit', function (code) {
-            ttt.equal(code, 1);
             ttt.end();
         });
     });
