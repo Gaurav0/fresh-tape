@@ -3,8 +3,6 @@
 var tap = require('tap');
 var spawn = require('child_process').spawn;
 var concat = require('concat-stream');
-var assign = require('object.assign');
-
 tap.test('importing mjs files', function (t) {
     var tc = function (rows) {
         t.same(rows.toString('utf8'), [
@@ -169,5 +167,5 @@ tap.test('errors importing test files', function (t) {
 function tape(args, options) {
     var bin = __dirname + '/../bin/fresh-tape';
 
-    return spawn(process.execPath, [bin].concat(args.split(' ')), assign({ cwd: __dirname }, options));
+    return spawn(process.execPath, [bin].concat(args.split(' ')), Object.assign({ cwd: __dirname }, options));
 }

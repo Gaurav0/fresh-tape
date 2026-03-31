@@ -4,8 +4,6 @@ var tape = require('../');
 var tap = require('tap');
 var concat = require('concat-stream');
 var inspect = require('object-inspect');
-var assign = require('object.assign');
-
 var stripFullStack = require('./common').stripFullStack;
 
 var getter = function () { return 'message'; };
@@ -337,7 +335,7 @@ tap.test('failures', function (tt) {
             function () {
                 var otherErr = new TypeError('Not found');
                 // Copy all enumerable properties from `err` to `otherErr`.
-                assign(otherErr, err);
+                Object.assign(otherErr, err);
                 throw otherErr;
             },
             // The error's `message` and `name` properties will also be checked when using

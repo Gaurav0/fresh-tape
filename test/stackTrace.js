@@ -6,7 +6,6 @@ var spawn = require('child_process').spawn;
 var url = require('url');
 var concat = require('concat-stream');
 var TapParser = require('tap-parser');
-var assign = require('object.assign');
 var common = require('./common');
 
 var getDiag = common.getDiag;
@@ -29,7 +28,7 @@ tap.test('preserves stack trace with newlines', function (tt) {
 
     parser.once('assert', function (data) {
         // tap-parser may add fields (e.g. fullname); compare stable subset
-        var assertData = assign({}, data);
+        var assertData = Object.assign({}, data);
         delete assertData.fullname;
         tt.deepEqual(assertData, {
             ok: false,
@@ -182,7 +181,7 @@ tap.test('preserves stack trace for failed assertions', function (tt) {
 
     var stack = '';
     parser.once('assert', function (data) {
-        var assertData = assign({}, data);
+        var assertData = Object.assign({}, data);
         delete assertData.fullname;
         tt.equal(typeof data.diag.at, 'string');
         tt.equal(typeof data.diag.stack, 'string');
@@ -247,7 +246,7 @@ tap.test('preserves stack trace for failed assertions where actual===falsy', fun
 
     var stack = '';
     parser.once('assert', function (data) {
-        var assertData = assign({}, data);
+        var assertData = Object.assign({}, data);
         delete assertData.fullname;
         tt.equal(typeof data.diag.at, 'string');
         tt.equal(typeof data.diag.stack, 'string');
@@ -306,7 +305,7 @@ tap.test('preserves stack trace for failed assertions where actual===falsy', fun
 function spawnTape(args, options) {
     var bin = __dirname + '/../bin/fresh-tape';
 
-    return spawn(process.execPath, [bin].concat(args.split(' ')), assign({ cwd: __dirname }, options));
+    return spawn(process.execPath, [bin].concat(args.split(' ')), Object.assign({ cwd: __dirname }, options));
 }
 
 function processRows(rows) {
