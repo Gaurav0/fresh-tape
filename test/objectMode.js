@@ -2,7 +2,6 @@
 
 var tap = require('tap');
 var tape = require('../');
-var forEach = require('for-each');
 var Writable = require('@leichtgewicht/readable-stream').Writable;
 
 tap.test('object results', function (assert) {
@@ -24,7 +23,7 @@ tap.test('object results', function (assert) {
 
             assert.equal(objects.length, 13);
 
-            forEach(objects, function (object) {
+            objects.forEach(function (object) {
                 if (object.type === 'assert') {
                     asserts++;
                 } else if (object.type === 'test') {

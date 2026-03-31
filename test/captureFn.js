@@ -4,7 +4,6 @@ var tape = require('../');
 var tap = require('tap');
 var concat = require('concat-stream');
 var inspect = require('object-inspect');
-var forEach = require('for-each');
 var v = require('es-value-fixtures');
 
 var stripFullStack = require('./common').stripFullStack;
@@ -37,7 +36,7 @@ tap.test('captureFn: output', function (tt) {
     }));
 
     test('argument validation', function (t) {
-        forEach(v.nonFunctions, function (nonFunction) {
+        v.nonFunctions.forEach(function (nonFunction) {
             t.throws(
                 function () { t.captureFn(nonFunction); },
                 TypeError,

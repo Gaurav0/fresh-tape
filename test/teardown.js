@@ -3,7 +3,6 @@
 var tape = require('../');
 var tap = require('tap');
 var concat = require('concat-stream');
-var forEach = require('for-each');
 var v = require('es-value-fixtures');
 var inspect = require('object-inspect');
 
@@ -226,7 +225,7 @@ tap.test('teardowns', function (tt) {
 
         t.ok('non-function test');
 
-        forEach(v.nonFunctions, function (nonFunction) {
+        v.nonFunctions.forEach(function (nonFunction) {
             t.teardown(nonFunction);
         });
     });

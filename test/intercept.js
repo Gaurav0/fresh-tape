@@ -4,7 +4,6 @@ var tape = require('../');
 var tap = require('tap');
 var concat = require('concat-stream');
 var inspect = require('object-inspect');
-var forEach = require('for-each');
 var v = require('es-value-fixtures');
 
 var stripFullStack = require('./common').stripFullStack;
@@ -88,7 +87,7 @@ tap.test('intercept: output', function (tt) {
     }));
 
     test('argument validation', function (t) {
-        forEach(v.primitives, function (primitive) {
+        v.primitives.forEach(function (primitive) {
             t.throws(
                 function () { t.intercept(primitive, ''); },
                 TypeError,
@@ -96,7 +95,7 @@ tap.test('intercept: output', function (tt) {
             );
         });
 
-        forEach(v.nonPropertyKeys, function (nonPropertyKey) {
+        v.nonPropertyKeys.forEach(function (nonPropertyKey) {
             t.throws(
                 function () { t.intercept({}, nonPropertyKey); },
                 TypeError,
@@ -104,7 +103,7 @@ tap.test('intercept: output', function (tt) {
             );
         });
 
-        forEach(v.primitives, function (primitive) {
+        v.primitives.forEach(function (primitive) {
             t.throws(
                 function () { t.intercept({}, '', primitive); },
                 TypeError,
@@ -127,7 +126,7 @@ tap.test('intercept: output', function (tt) {
             'mixed data (writable) and accessor (set) is not allowed'
         );
 
-        forEach(v.nonBooleans, function (nonBoolean) {
+        v.nonBooleans.forEach(function (nonBoolean) {
             t.throws(
                 function () { t.intercept({}, '', {}, nonBoolean); },
                 TypeError,
