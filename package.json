@@ -78,6 +78,7 @@
         "posttest": "npx npm@'>=10.2' audit --production",
         "tests-only": "tap -Rtap --no-coverage --no-check-coverage --no-coverage-report --no-esm test/*.js",
         "tests-compat": "tap -Rtap --no-coverage --no-check-coverage --no-coverage-report --no-esm test/compat/*.js",
+        "tests-compat:windows": "tap -Rtap --no-coverage --no-check-coverage --no-coverage-report --no-esm test/compat/*.js",
         "tests-only:windows": "tap -Rtap --no-coverage --no-check-coverage --no-coverage-report --no-esm test/*.js",
         "test:baseline": "bash scripts/run-baseline.sh",
         "test:example": "find example -name '*.js' | grep -v fail | grep -v static | xargs tap -Rtap --no-coverage --no-check-coverage --no-coverage-report --no-esm"
