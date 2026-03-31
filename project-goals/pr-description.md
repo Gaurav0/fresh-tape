@@ -1,6 +1,6 @@
-# Pull request: Tape 5.9.0 API parity; CI, tooling, and test robustness; drop node < 10 support
+# Pull request: Tape 5.9.0 API parity; CI, tooling, and test robustness; drop node < 12 support
 
-**Published as** `@gaurav9576/fresh-tape@5.9.0` for anyone who would like to test it in their projects.
+**Published as** `@gaurav9576/fresh-tape@5.9.1` for anyone who would like to test it in their projects.
 
 **Target:** [martinheidegger/fresh-tape](https://github.com/martinheidegger/fresh-tape) `main`
 
@@ -64,5 +64,4 @@ Applied in **`package.json`** (`tests-only`, `tests-compat`, `tests-only:windows
 
 ## Notes
 
-- Skipped tests on Node 10/11 report explicit **SKIP** reasons in TAP output.
 - For **coverage** via tap locally, invoke **`tap`** with coverage enabled explicitly; default **`npm run tests-only`** prioritizes **stable CI** across Node versions.
