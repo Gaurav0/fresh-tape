@@ -1,5 +1,7 @@
 # fresh-tape <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
+> **Fork publish:** Install with `npm install @gaurav9576/fresh-tape` and `require('@gaurav9576/fresh-tape')` in tests until the upstream package name is available.
+
 [TAP](https://testanything.org/)-producing test harness for node and browsers
 
 [`tape`](https://npmjs.com/package/fresh-tape) is commited to keep the current node compatibility,
@@ -692,18 +694,18 @@ test('third', function (t) {
 
 MIT
 
-[package-url]: https://npmjs.org/package/fresh-tape
-[npm-version-svg]: https://versionbadg.es/martinheidegger/fresh-tape.svg
-[deps-svg]: https://david-dm.org/martinheidegger/fresh-tape.svg
-[deps-url]: https://david-dm.org/martinheidegger/fresh-tape
-[dev-deps-svg]: https://david-dm.org/martinheidegger/fresh-tape/dev-status.svg
-[dev-deps-url]: https://david-dm.org/martinheidegger/fresh-tape#info=devDependencies
-[npm-badge-png]: https://nodei.co/npm/fresh-tape.png?downloads=true&stars=true
-[license-image]: https://img.shields.io/npm/l/fresh-tape.svg
+[package-url]: https://www.npmjs.com/package/@gaurav9576/fresh-tape
+[npm-version-svg]: https://img.shields.io/npm/v/@gaurav9576/fresh-tape.svg
+[deps-svg]: https://david-dm.org/gaurav9576/fresh-tape.svg
+[deps-url]: https://david-dm.org/gaurav9576/fresh-tape
+[dev-deps-svg]: https://david-dm.org/gaurav9576/fresh-tape/dev-status.svg
+[dev-deps-url]: https://david-dm.org/gaurav9576/fresh-tape#info=devDependencies
+[npm-badge-png]: https://nodei.co/npm/@gaurav9576/fresh-tape.png?downloads=true&stars=true
+[license-image]: https://img.shields.io/npm/l/@gaurav9576/fresh-tape.svg
 [license-url]: LICENSE
-[downloads-image]: https://img.shields.io/npm/dm/fresh-tape.svg
-[downloads-url]: https://npm-stat.com/charts.html?package=tape
-[codecov-image]: https://codecov.io/gh/martinheidegger/fresh-tape/branch/master/graphs/badge.svg
-[codecov-url]: https://app.codecov.io/gh/martinheidegger/fresh-tape/
-[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/martinheidegger/fresh-tape
-[actions-url]: https://github.com/martinheidegger/fresh-tape/actions
+[downloads-image]: https://img.shields.io/npm/dm/@gaurav9576/fresh-tape.svg
+[downloads-url]: https://npm-stat.com/charts.html?package=%40gaurav9576%2Ffresh-tape
+[codecov-image]: https://codecov.io/gh/gaurav9576/fresh-tape/branch/main/graphs/badge.svg
+[codecov-url]: https://app.codecov.io/gh/gaurav9576/fresh-tape/
+[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/gaurav9576/fresh-tape
+[actions-url]: https://github.com/gaurav9576/fresh-tape/actions
