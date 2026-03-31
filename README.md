@@ -109,7 +109,7 @@ Please note that all modules loaded using the `-r` flag will run *before* any te
 
 Upstream `tape` uses the `has-dynamic-import` package to detect whether `import()` is available and, when not, loads every test file with synchronous `require()` only. **fresh-tape does not do that** The `fresh-tape` binary always loads test files through `import-or-require`, which uses dynamic `import()` for ESM (`.mjs` and `package.json` `"type":"module"` `.js`). There is **no** runtime probe and **no** fallback path for runtimes that lack `import()`.
 
-Use a Node version that supports dynamic `import()` from CommonJS (see `engines` in `package.json`; **Node ≥ 10.17**). Older Node releases cannot run this CLI entry for ESM tests; stick to CommonJS test files if you must target them, and prefer a newer Node for full parity with upstream `tape`’s CLI behavior on mixed ESM/CJS suites.
+Use a Node version that supports dynamic `import()` from CommonJS (see `engines` in `package.json`; **Node ≥ 12**). Older Node releases cannot run this CLI entry for ESM tests; stick to CommonJS test files if you must target them, and prefer a newer Node for full parity with upstream `tape`’s CLI behavior on mixed ESM/CJS suites.
 
 # Things that go well with tape
 
