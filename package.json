@@ -33,7 +33,6 @@
         "dotignore": "^0.1.2",
         "get-package-type": "^0.1.0",
         "glob": "^7.2.3",
-        "hasown": "^2.0.2",
         "inherits": "^2.0.4",
         "is-regex": "^1.1.4",
         "minimist": "^1.2.8",
